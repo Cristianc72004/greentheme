@@ -1,0 +1,115 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: greentheme\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+
+msgid "plugins.themes.greentheme.name"
+msgstr "Green Theme"
+
+msgid "plugins.themes.greentheme.description"
+msgstr "A Bootstrap 3-based starter theme for the reader frontend."
+
+msgid "plugins.themes.greentheme.accessible_menu.label"
+msgstr "Quick jump to page content"
+
+msgid "plugins.themes.greentheme.accessible_menu.main_navigation"
+msgstr "Main Navigation"
+
+msgid "plugins.themes.greentheme.accessible_menu.main_content"
+msgstr "Main Content"
+
+msgid "plugins.themes.greentheme.accessible_menu.sidebar"
+msgstr "Sidebar"
+
+msgid "plugins.themes.greentheme.article.sidebar"
+msgstr "Article Sidebar"
+
+msgid "plugins.themes.greentheme.article.main"
+msgstr "Main Article Content"
+
+msgid "plugins.themes.greentheme.article.details"
+msgstr "Article Details"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.label"
+msgstr "Bootstrap Theme"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.description"
+msgstr "Select one of these open-source Bootstrap themes to change your site’s colors and typography."
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.bootstrap3"
+msgstr "Default Bootstrap Theme"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.cerulean"
+msgstr "Cerulean"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.cleanblog"
+msgstr "Clean Blog"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.cosmo"
+msgstr "Cosmo"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.cyborg"
+msgstr "Cyborg"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.darkly"
+msgstr "Darkly"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.flatly"
+msgstr "Flatly"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.journal"
+msgstr "Journal"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.lumen"
+msgstr "Lumen"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.paper"
+msgstr "Paper"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.readable"
+msgstr "Readable"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.sandstone"
+msgstr "Sandstone"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.simplex"
+msgstr "Simplex"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.slate"
+msgstr "Slate"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.spacelab"
+msgstr "Spacelab"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.superhero"
+msgstr "Superhero"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.united"
+msgstr "United"
+
+msgid "plugins.themes.greentheme.options.bootstrapTheme.yeti"
+msgstr "Yeti"
+
+msgid "plugins.themes.greentheme.option.displayStats.label"
+msgstr "Usage statistics display options"
+
+msgid "plugins.themes.greentheme.option.displayStats.none"
+msgstr "Do not display the reader usage statistics chart."
+
+msgid "plugins.themes.greentheme.option.displayStats.bar"
+msgstr "Use a bar chart to display usage statistics."
+
+msgid "plugins.themes.greentheme.option.displayStats.line"
+msgstr "Use a line chart to display usage statistics."
+
+msgid "plugins.themes.greentheme.displayStats.monthInitials"
+msgstr "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec"
+
+msgid "plugins.themes.greentheme.displayStats.downloads"
+msgstr "Downloads"
+
+msgid "plugins.themes.greentheme.displayStats.noStats"
+msgstr "Download data is not yet available."
