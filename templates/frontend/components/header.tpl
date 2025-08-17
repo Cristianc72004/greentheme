@@ -1,9 +1,8 @@
 {**
  * plugins/themes/greentheme/templates/frontend/components/header.tpl
- * Common frontend site header (custom GreenTheme)
+ * Common frontend site header (GreenTheme con sidebar global)
  *}
 
-{* Determine whether a logo or title string is being displayed (kept for body class) *}
 {assign var="showingLogo" value=true}
 {if $displayPageHeaderTitle && !$displayPageHeaderLogo && is_string($displayPageHeaderTitle)}
 	{assign var="showingLogo" value=false}
@@ -14,7 +13,6 @@
 {if !$pageTitleTranslated}{capture assign="pageTitleTranslated"}{translate key=$pageTitle}{/capture}{/if}
 {include file="frontend/components/headerHead.tpl"}
 
-{* Base URL del plugin para referenciar imágenes propias *}
 {assign var=pluginBaseUrl value=$baseUrl|cat:'/plugins/themes/greentheme'}
 
 <body class="pkp_page_{$requestedPage|escape|default:"index"} pkp_op_{$requestedOp|escape|default:"index"}{if $showingLogo} has_site_logo{/if}">
@@ -29,7 +27,7 @@
 			</ul>
 		</nav>
 
-		{* Header *}
+		{* HEADER (logo + logos aliados + user menu + buscador) *}
 		<header class="navbar navbar-default" id="headerNavigationContainer" role="banner">
 
 			{* Menú de usuario (perfil, login, etc.) *}
@@ -38,10 +36,10 @@
 					<nav aria-label="{translate|escape key="common.navigation.user"}">
 						{load_menu name="user" id="navigationUser" ulClass="nav nav-pills tab-list pull-right"}
 					</nav>
-				</div><!-- .row -->
-			</div><!-- .container-fluid -->
+				</div>
+			</div>
 
-			{* Bloque de marca: logo + título + e-ISSN + logos aliados *}
+			{* Branding *}
 			<div class="container gwj-header">
 				<div class="row">
 					<div class="col-sm-8">
@@ -56,7 +54,6 @@
 					</div>
 					<div class="col-sm-4 text-right">
 						<div class="partner-logos">
-							{* Descomenta o sustituye según tus archivos reales *}
 							<img src="{$pluginBaseUrl}/images/camera.png" alt="CaMeRa">
 							<img src="{$pluginBaseUrl}/images/latindex.jpg" alt="Latindex">
 							<img src="{$pluginBaseUrl}/images/road.jpg" alt="ROAD">
@@ -65,40 +62,29 @@
 				</div>
 			</div>
 
-			{* Contenedor de navegación principal + buscador *}
-			<div class="container-fluid">
-
-				<div class="navbar-header">
-					{* Botón hamburguesa móvil *}
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu" aria-expanded="false" aria-controls="nav-menu">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
-
-				{* Menú de navegación principal *}
-				{capture assign="primaryMenu"}
-					{load_menu name="primary" id="main-navigation" ulClass="nav navbar-nav"}
-				{/capture}
-
-				{if !empty(trim($primaryMenu)) || $currentContext}
-					<nav id="nav-menu" class="navbar-collapse collapse" aria-label="{translate|escape key="common.navigation.site"}">
-						{$primaryMenu}
-
-						{* Buscador *}
-						{if $currentContext}
-							<div class="pull-md-right">
-								{include file="frontend/components/searchForm_simple.tpl"}
-							</div>
-						{/if}
-					</nav>
+			{* Buscador (dejamos el primary nav SOLO en el sidebar global) *}
+			<div class="container">
+				{if $currentContext}
+					<div class="row">
+						<div class="col-sm-6 col-sm-offset-6 text-right">
+							{include file="frontend/components/searchForm_simple.tpl"}
+						</div>
+					</div>
 				{/if}
+			</div>
 
-			</div><!-- .container-fluid -->
 		</header><!-- .pkp_structure_head -->
 
-		{* Contenedor de contenido y sidebars *}
+		{* ====== LAYOUT GLOBAL: SIDEBAR IZQUIERDO (MENÚ VERTICAL) + MAIN ====== *}
 		<div class="pkp_structure_content container">
-			<main class="pkp_structure_main col-xs-12 col-sm-10 col-md-8" role="main">
+			<div class="row">
+
+				{* Sidebar global con el menú principal vertical *}
+				<aside id="sidebar" class="gwj-sidebar col-sm-3" role="navigation" aria-label="{translate|escape key="plugins.themes.greentheme.accessible_menu.main_navigation"}">
+					<nav class="gwj-sidemenu">
+						{load_menu name="primary" id="main-navigation" ulClass="nav nav-pills nav-stacked"}
+					</nav>
+				</aside>
+
+				{* Contenido de cada página *}
+				<main id="main-content" class="pkp_structure_main col-xs-12 col-sm-9" role="main">

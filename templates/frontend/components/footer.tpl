@@ -1,54 +1,35 @@
 {**
- * templates/frontend/components/footer.tpl
- *
- * Copyright (c) 2014-2023 Simon Fraser University
- * Copyright (c) 2003-2023 John Willinsky
- * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
- *
- * @brief Common site frontend footer.
- *
- * @uses $isFullWidth bool Should this page be displayed without sidebars? This
- *       represents a page-level override, and doesn't indicate whether or not
- *       sidebars have been configured for thesite.
+ * plugins/themes/greentheme/templates/frontend/components/footer.tpl
+ * Common frontend site footer (GreenTheme con sidebar global)
  *}
 
-	</main>
+			</main> {* cierre del main abierto en header.tpl *}
+		</div>   {* cierre .row *}
+	</div>     {* cierre .pkp_structure_content .container *}
 
-	{* Sidebars *}
-	{if empty($isFullWidth)}
-		{capture assign="sidebarCode"}{call_hook name="Templates::Common::Sidebar"}{/capture}
-		{if $sidebarCode}
-			<aside id="sidebar" class="pkp_structure_sidebar left col-xs-12 col-sm-8 col-md-4" role="complementary" aria-label="{translate|escape key="common.navigation.sidebar"}">
-				{$sidebarCode}
-			</aside><!-- pkp_sidebar.left -->
-		{/if}
-	{/if}
-	</div><!-- pkp_structure_content -->
-
-	<footer class="footer" role="contentinfo">
-
+	{* Footer del sitio *}
+	<footer class="site-footer" role="contentinfo">
 		<div class="container">
-
 			<div class="row">
-				{if $pageFooter}
-				<div class="col-md-10">
-					{$pageFooter}
+				<div class="col-sm-6">
+					<p class="copyright">
+						&copy; {$smarty.now|date_format:"%Y"} {$currentContext->getLocalizedName()|escape}
+					</p>
 				</div>
-				{/if}
-
-				<div class="col-md-2" role="complementary">
-					<a href="{url page="about" op="aboutThisPublishingSystem"}">
-                                                <img class="img-responsive" alt="{translate key="about.aboutThisPublishingSystem"}" src="{$baseUrl}/{$brandImage}">
-                                        </a>
+				<div class="col-sm-6 text-right">
+					{* Marca OJS/PKP (oculta por CSS si no la quieres) *}
+					<div class="pkp_branding">
+						{if $pageFooter}{* contenido configurable desde Apariencia *}
+							{$pageFooter}
+						{/if}
+					</div>
 				</div>
-
-			</div> <!-- .row -->
-		</div><!-- .container -->
+			</div>
+		</div>
 	</footer>
-</div><!-- pkp_structure_page -->
 
-{load_script context="frontend" scripts=$scripts}
+</div> {* cierre .pkp_structure_page *}
 
-{call_hook name="Templates::Common::Footer::PageFooter"}
+{load_script context="frontend"}
 </body>
 </html>

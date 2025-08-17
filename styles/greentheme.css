@@ -21,7 +21,7 @@ header.navbar.navbar-default .navbar-nav > li > a { padding-top: 15px; padding-b
 .gwj-hero { position: relative; margin: 15px 0 25px; }
 .gwj-hero img {
   display: block;
-  width: 80%;
+  width: 100%;
   height: 420px;              /* Ajusta altura del hero */
   object-fit: cover;
   object-position: center;
@@ -35,20 +35,20 @@ header.navbar.navbar-default .navbar-nav > li > a { padding-top: 15px; padding-b
 }
 
 /* ====== Barra lateral (menú izquierdo) ====== */
-/* contenedor de la home con sidebar (lo usaremos en indexJournal.tpl) */
-.gwj-home { margin-top: 10px; }
+.gwj-home { margin-top: 10px; }      /* contenedor de home con sidebar */
 
-/* caja del sidebar */
 .gwj-sidebar { padding-right: 15px; }
 .gwj-sidemenu {
   background: #fff;
   border: 1px solid #d9e2e1;
   border-radius: 3px;
-  overflow: hidden;
+  overflow: visible;    /* importante para que el dropdown no se recorte */
+  position: relative;   /* ancla del dropdown */
 }
 
 /* lista del menú */
 .gwj-sidemenu ul { list-style: none; margin: 0; padding: 0; }
+.gwj-sidemenu li { position: relative; }
 .gwj-sidemenu li a {
   display: block;
   padding: 10px 12px;
@@ -56,12 +56,12 @@ header.navbar.navbar-default .navbar-nav > li > a { padding-top: 15px; padding-b
   text-decoration: none;
   border-bottom: 1px solid #e6eeee;
 }
-.gwj-sidemenu li:last-child a { border-bottom: 0; }
-.gwj-sidemenu li a:hover { background: #e8f4f2; }
+.gwj-sidemenu li:last-child > a { border-bottom: 0; }
+.gwj-sidemenu li > a:hover { background: #e8f4f2; }
 
 /* activo */
 .gwj-sidemenu li.active > a,
-.gwj-sidemenu li a.active {
+.gwj-sidemenu li > a.active {
   background: #2f9a8f;
   color: #fff;
 }
@@ -77,6 +77,50 @@ header.navbar.navbar-default .navbar-nav > li > a { padding-top: 15px; padding-b
   color: #1b4d2a;
   border-bottom: 1px solid #e6eeee;
   background: #f7fbfa;
+}
+
+/* ---- Dropdown del menú lateral (submenú “Acerca de”) ---- */
+.gwj-sidemenu .dropdown-toggle .caret { float: right; margin-top: 8px; }
+.gwj-sidemenu .dropdown-menu {
+  left: 0; right: 0;           /* que ocupe todo el ancho del contenedor */
+  width: 100%;
+  margin: 0;
+  border-radius: 0 0 3px 3px;
+  border-color: #e6eeee;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+.gwj-sidemenu .dropdown-menu > li > a {
+  padding: 9px 12px;
+  color: #2c3e50;
+}
+.gwj-sidemenu .dropdown-menu > li > a:hover { background: #e8f4f2; }
+
+/* Estado abierto del padre para que visualmente se una al panel desplegado */
+.gwj-sidemenu .dropdown.open > a,
+.gwj-sidemenu .dropdown.open > a:hover {
+  background: #2f9a8f;
+  color: #fff;
+  border-bottom-color: transparent;
+}
+
+/* ====== Menú principal vertical en el header (si lo usas) ====== */
+.gwj-primary-nav .gwj-vertical-menu.nav > li { float: none; }
+.gwj-primary-nav .gwj-vertical-menu > li > a {
+  display: block;
+  padding: 10px 12px;
+  color: #2c3e50;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid #e6eeee;
+  border-radius: 3px;
+  margin-bottom: 6px;
+}
+.gwj-primary-nav .gwj-vertical-menu > li.active > a,
+.gwj-primary-nav .gwj-vertical-menu > li > a:hover,
+.gwj-primary-nav .gwj-vertical-menu > li > a:focus {
+  background: #2f9a8f;
+  color: #fff;
+  border-color: #2f9a8f;
 }
 
 /* Ocultar la banda “Platform & workflow by OJS/PKP” */
@@ -101,4 +145,7 @@ header.navbar.navbar-default .navbar-nav > li > a { padding-top: 15px; padding-b
   .gwj-title { font-size: 22px; }
   .gwj-hero img { height: 240px; }
   .gwj-sidebar { padding-right: 0; margin-bottom: 15px; }
+  .gwj-primary-nav .col-sm-3,
+  .gwj-primary-nav .col-sm-9 { float: none; width: 100%; }
+  .gwj-primary-nav .gwj-vertical-menu > li > a { margin-bottom: 8px; }
 }
