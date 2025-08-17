@@ -1,68 +1,67 @@
 {**
- * templates/frontend/pages/indexJournal.tpl
+ * plugins/themes/greentheme/templates/frontend/pages/indexJournal.tpl
  *
- * UPDATED/CHANGED/MODIFIED: Marc Behiels - marc@elemental.ca - 250416
- *
- * Copyright (c) 2014-2023 Simon Fraser University
- * Copyright (c) 2003-2023 John Willinsky
- * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
- *
- * @brief Display the index page for a journal
- *
- * @uses $currentJournal Journal This journal
- * @uses $journalDescription string Journal description from HTML text editor
- * @uses $homepageImage object Image to be displayed on the homepage
- * @uses $additionalHomeContent string Arbitrary input from HTML text editor
- * @uses $announcements array List of announcements
- * @uses $numAnnouncementsHomepage int Number of announcements to display on the
- *       homepage
- * @uses $issue Issue Current issue
+ * Portada de la revista con hero fijo (GreenTheme)
  *}
+
 {include file="frontend/components/header.tpl" pageTitleTranslated=$currentJournal->getLocalizedName()}
+
+{* Base URL del plugin para imágenes propias *}
+{assign var=pluginBaseUrl value=$baseUrl|cat:'/plugins/themes/greentheme'}
 
 <div id="main-content" class="page_index_journal">
 
 	{call_hook name="Templates::Index::journal"}
 
+	{* ==== HERO de portada (imagen fija del plugin) ==== *}
+	<div class="container">
+		<div class="gwj-hero">
+			<img src="{$pluginBaseUrl}/images/fondo.jpg" alt="{$currentJournal->getLocalizedName()|escape}">
+			<div class="gwj-cta">
+				<a class="btn btn-default btn-lg"
+				   href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="submissions"}">
+					{translate key="about.submissions"}
+				</a>
+			</div>
+		</div>
+	</div>
+
+	{* ==== Imagen de inicio de OJS (desactivada para usar el hero del tema) ==== *}
+	{*
 	{if $homepageImage}
 		<div class="homepage-image">
 			<img class="img-responsive" src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" alt="{$homepageImageAltText|escape}">
 		</div>
 	{/if}
+	*}
 
+	{* Descripción de la revista *}
 	{if $journalDescription}
-		<div class="journal-description">
+		<div class="journal-description container">
 			{$journalDescription}
 		</div>
 	{/if}
 
-	{* Announcements *}
+	{* Anuncios *}
 	{if $numAnnouncementsHomepage && $announcements|count}
-		<section class="cmp_announcements media">
+		<section class="cmp_announcements media container">
 			<header class="page-header">
-				<h2>
-					{translate key="announcement.announcements"}
-				</h2>
+				<h2>{translate key="announcement.announcements"}</h2>
 			</header>
 			<div class="media-list">
 				{foreach name=announcements from=$announcements item=announcement}
-					{if $smarty.foreach.announcements.iteration > $numAnnouncementsHomepage}
-						{break}
-					{/if}
+					{if $smarty.foreach.announcements.iteration > $numAnnouncementsHomepage}{break}{/if}
 					{include file="frontend/objects/announcement_summary.tpl" heading="h3"}
 				{/foreach}
 			</div>
 		</section>
 	{/if}
 
-
-	{* Latest issue *}
+	{* Número actual *}
 	{if $issue}
-		<section class="current_issue">
+		<section class="current_issue container">
 			<header class="page-header">
-				<h2>
-					{translate key="journal.currentIssue"}
-				</h2>
+				<h2>{translate key="journal.currentIssue"}</h2>
 			</header>
 			<p class="current_issue_title lead">
 				{$issue->getIssueIdentification()|strip_unsafe_html}
@@ -75,9 +74,9 @@
 		</section>
 	{/if}
 
-	{* Additional Homepage Content *}
+	{* Contenido adicional *}
 	{if $additionalHomeContent}
-		<section class="additional_content">
+		<section class="additional_content container">
 			{$additionalHomeContent}
 		</section>
 	{/if}

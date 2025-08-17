@@ -1,18 +1,9 @@
 {**
- * lib/pkp/templates/frontend/components/header.tpl
- *
- * Copyright (c) 2014-2023 Simon Fraser University
- * Copyright (c) 2003-2023 John Willinsky
- * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
- *
- * @brief Common frontend site header.
- *
- * @uses $isFullWidth bool Should this page be displayed without sidebars? This
- *       represents a page-level override, and doesn't indicate whether or not
- *       sidebars have been configured for thesite.
+ * plugins/themes/greentheme/templates/frontend/components/header.tpl
+ * Common frontend site header (custom GreenTheme)
  *}
 
-{* Determine whether a logo or title string is being displayed *}
+{* Determine whether a logo or title string is being displayed (kept for body class) *}
 {assign var="showingLogo" value=true}
 {if $displayPageHeaderTitle && !$displayPageHeaderLogo && is_string($displayPageHeaderTitle)}
 	{assign var="showingLogo" value=false}
@@ -22,21 +13,26 @@
 <html lang="{$currentLocale|replace:"_":"-"}" xml:lang="{$currentLocale|replace:"_":"-"}">
 {if !$pageTitleTranslated}{capture assign="pageTitleTranslated"}{translate key=$pageTitle}{/capture}{/if}
 {include file="frontend/components/headerHead.tpl"}
+
+{* Base URL del plugin para referenciar imágenes propias *}
+{assign var=pluginBaseUrl value=$baseUrl|cat:'/plugins/themes/greentheme'}
+
 <body class="pkp_page_{$requestedPage|escape|default:"index"} pkp_op_{$requestedOp|escape|default:"index"}{if $showingLogo} has_site_logo{/if}">
 	<div class="pkp_structure_page">
 
-		<nav id="accessibility-nav" class="sr-only" role="navigation" aria-label="{translate|escape key="plugins.themes.bootstrap3.accessible_menu.label"}">
+		{* Accesibilidad *}
+		<nav id="accessibility-nav" class="sr-only" role="navigation" aria-label="{translate|escape key="plugins.themes.greentheme.accessible_menu.label"}">
 			<ul>
-			  <li><a href="#main-navigation">{translate|escape key="plugins.themes.bootstrap3.accessible_menu.main_navigation"}</a></li>
-			  <li><a href="#main-content">{translate|escape key="plugins.themes.bootstrap3.accessible_menu.main_content"}</a></li>
-			  <li><a href="#sidebar">{translate|escape key="plugins.themes.bootstrap3.accessible_menu.sidebar"}</a></li>
+			  <li><a href="#main-navigation">{translate|escape key="plugins.themes.greentheme.accessible_menu.main_navigation"}</a></li>
+			  <li><a href="#main-content">{translate|escape key="plugins.themes.greentheme.accessible_menu.main_content"}</a></li>
+			  <li><a href="#sidebar">{translate|escape key="plugins.themes.greentheme.accessible_menu.sidebar"}</a></li>
 			</ul>
 		</nav>
 
 		{* Header *}
 		<header class="navbar navbar-default" id="headerNavigationContainer" role="banner">
 
-			{* User profile, login, etc, navigation menu*}
+			{* Menú de usuario (perfil, login, etc.) *}
 			<div class="container-fluid">
 				<div class="row">
 					<nav aria-label="{translate|escape key="common.navigation.user"}">
@@ -45,58 +41,53 @@
 				</div><!-- .row -->
 			</div><!-- .container-fluid -->
 
+			{* Bloque de marca: logo + título + e-ISSN + logos aliados *}
+			<div class="container gwj-header">
+				<div class="row">
+					<div class="col-sm-8">
+						{capture assign="homeUrl"}{url page="index" router=\PKP\core\PKPApplication::ROUTE_PAGE}{/capture}
+						<a class="gwj-brand" href="{$homeUrl}">
+							<img class="gwj-logo" src="{$pluginBaseUrl}/images/logo-gwj.png" alt="{$currentContext->getLocalizedName()|escape}">
+							<div>
+								<div class="gwj-title">{$currentContext->getLocalizedName()|escape}</div>
+								<div class="gwj-issn">e-ISSN 2737-6109</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-sm-4 text-right">
+						<div class="partner-logos">
+							{* Descomenta o sustituye según tus archivos reales *}
+							<img src="{$pluginBaseUrl}/images/camera.png" alt="CaMeRa">
+							<img src="{$pluginBaseUrl}/images/latindex.jpg" alt="Latindex">
+							<img src="{$pluginBaseUrl}/images/road.jpg" alt="ROAD">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{* Contenedor de navegación principal + buscador *}
 			<div class="container-fluid">
 
 				<div class="navbar-header">
-
-					{* Mobile hamburger menu *}
+					{* Botón hamburguesa móvil *}
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu" aria-expanded="false" aria-controls="nav-menu">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-
-					{* Logo or site title. Only use <h1> heading on the homepage.
-					   Otherwise that should go to the page title. *}
-					{if $requestedOp == 'index'}
-						<h1 class="site-name">
-					{else}
-						<div class="site-name">
-					{/if}
-						{capture assign="homeUrl"}
-							{url page="index" router=\PKP\core\PKPApplication::ROUTE_PAGE}
-						{/capture}
-						{if $displayPageHeaderLogo}
-							<a href="{$homeUrl}" class="navbar-brand navbar-brand-logo">
-								<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{/if}>
-							</a>
-						{elseif $displayPageHeaderTitle}
-							<a href="{$homeUrl}" class="navbar-brand">{$displayPageHeaderTitle}</a>
-						{else}
-							<a href="{$homeUrl}" class="navbar-brand">
-								<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" />
-							</a>
-						{/if}
-					{if $requestedOp == 'index'}
-						</h1>
-					{else}
-						</div>
-					{/if}
-
 				</div>
 
-				{* Primary site navigation *}
+				{* Menú de navegación principal *}
 				{capture assign="primaryMenu"}
 					{load_menu name="primary" id="main-navigation" ulClass="nav navbar-nav"}
 				{/capture}
 
 				{if !empty(trim($primaryMenu)) || $currentContext}
 					<nav id="nav-menu" class="navbar-collapse collapse" aria-label="{translate|escape key="common.navigation.site"}">
-						{* Primary navigation menu for current application *}
 						{$primaryMenu}
 
-						{* Search form *}
+						{* Buscador *}
 						{if $currentContext}
 							<div class="pull-md-right">
 								{include file="frontend/components/searchForm_simple.tpl"}
@@ -105,9 +96,9 @@
 					</nav>
 				{/if}
 
-			</div><!-- .pkp_head_wrapper -->
+			</div><!-- .container-fluid -->
 		</header><!-- .pkp_structure_head -->
 
-		{* Wrapper for page content and sidebars *}
+		{* Contenedor de contenido y sidebars *}
 		<div class="pkp_structure_content container">
 			<main class="pkp_structure_main col-xs-12 col-sm-10 col-md-8" role="main">

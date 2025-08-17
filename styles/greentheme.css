@@ -1,0 +1,58 @@
+/* =======================
+   GreenTheme – estilos base
+   ======================= */
+
+/* ----- Header / marca ----- */
+.gwj-header { padding: 12px 0 6px; }
+.gwj-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.gwj-logo  { height: 72px; width: auto; }
+.gwj-title { font-size: 36px; font-weight: 700; line-height: 1.1; color: #1b4d2a; margin: 0; }
+.gwj-issn  { font-size: 13px; color: #357a38; margin-top: -4px; }
+
+/* Barra de logos (aliados/índices) */
+.partner-logos { display: flex; justify-content: flex-end; gap: 16px; align-items: center; flex-wrap: wrap; }
+.partner-logos img { height: 34px; width: auto; opacity: .95; }
+
+/* Navbar (opcional, look limpio) */
+.navbar-default { background: #fff; border: none; box-shadow: 0 1px 0 rgba(0,0,0,.06); }
+.navbar-default .navbar-nav > li > a { padding-top: 15px; padding-bottom: 15px; }
+
+/* ----- Hero de portada ----- */
+.gwj-hero { position: relative; margin: 15px 0 25px; }
+.gwj-hero img {
+  display: block;
+  width: 100%;
+  height: 420px;              /* Ajusta altura del hero */
+  object-fit: cover;
+  object-position: center;
+  border-radius: 4px;
+}
+.gwj-hero .gwj-cta { position: absolute; right: 24px; bottom: 24px; }
+.gwj-hero .gwj-cta .btn {
+  padding: 12px 18px; font-size: 16px;
+  background: rgba(255,255,255,.9);
+  border-color: rgba(0,0,0,.1);
+}
+
+/* Ocultar la banda “Platform & workflow by OJS/PKP” */
+.pkp_brand_footer, .pkp_branding { display: none !important; }
+
+/* Si OJS trae Imagen de inicio, la ocultamos para usar nuestro hero */
+#homepageImage { display: none; }
+
+/* Utilidades */
+.mt-20 { margin-top: 20px; }
+.mb-20 { margin-bottom: 20px; }
+
+/* ----- Responsive ----- */
+@media (max-width: 991px) {
+  .gwj-logo { height: 60px; }
+  .gwj-title { font-size: 28px; }
+  .partner-logos { justify-content: flex-start; margin-top: 8px; }
+}
+
+@media (max-width: 767px) {
+  .gwj-logo { height: 48px; }
+  .gwj-title { font-size: 22px; }
+  .gwj-hero img { height: 240px; }
+}
