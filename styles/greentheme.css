@@ -13,15 +13,15 @@
 .partner-logos { display: flex; justify-content: flex-end; gap: 16px; align-items: center; flex-wrap: wrap; }
 .partner-logos img { height: 34px; width: auto; opacity: .95; }
 
-/* Navbar (opcional, look limpio) */
-.navbar-default { background: #fff; border: none; box-shadow: 0 1px 0 rgba(0,0,0,.06); }
-.navbar-default .navbar-nav > li > a { padding-top: 15px; padding-bottom: 15px; }
+/* Navbar (look limpio) */
+header.navbar.navbar-default { background: #fff; border: none; box-shadow: 0 1px 0 rgba(0,0,0,.06); }
+header.navbar.navbar-default .navbar-nav > li > a { padding-top: 15px; padding-bottom: 15px; }
 
 /* ----- Hero de portada ----- */
 .gwj-hero { position: relative; margin: 15px 0 25px; }
 .gwj-hero img {
   display: block;
-  width: 100%;
+  width: 80%;
   height: 420px;              /* Ajusta altura del hero */
   object-fit: cover;
   object-position: center;
@@ -32,6 +32,51 @@
   padding: 12px 18px; font-size: 16px;
   background: rgba(255,255,255,.9);
   border-color: rgba(0,0,0,.1);
+}
+
+/* ====== Barra lateral (menú izquierdo) ====== */
+/* contenedor de la home con sidebar (lo usaremos en indexJournal.tpl) */
+.gwj-home { margin-top: 10px; }
+
+/* caja del sidebar */
+.gwj-sidebar { padding-right: 15px; }
+.gwj-sidemenu {
+  background: #fff;
+  border: 1px solid #d9e2e1;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* lista del menú */
+.gwj-sidemenu ul { list-style: none; margin: 0; padding: 0; }
+.gwj-sidemenu li a {
+  display: block;
+  padding: 10px 12px;
+  color: #2c3e50;
+  text-decoration: none;
+  border-bottom: 1px solid #e6eeee;
+}
+.gwj-sidemenu li:last-child a { border-bottom: 0; }
+.gwj-sidemenu li a:hover { background: #e8f4f2; }
+
+/* activo */
+.gwj-sidemenu li.active > a,
+.gwj-sidemenu li a.active {
+  background: #2f9a8f;
+  color: #fff;
+}
+.gwj-sidemenu li.active > a:hover {
+  background: #27867c;
+  color: #fff;
+}
+
+/* título/separador dentro del menú (opcional) */
+.gwj-sidemenu .section-title {
+  font-weight: 600;
+  padding: 10px 12px;
+  color: #1b4d2a;
+  border-bottom: 1px solid #e6eeee;
+  background: #f7fbfa;
 }
 
 /* Ocultar la banda “Platform & workflow by OJS/PKP” */
@@ -55,4 +100,5 @@
   .gwj-logo { height: 48px; }
   .gwj-title { font-size: 22px; }
   .gwj-hero img { height: 240px; }
+  .gwj-sidebar { padding-right: 0; margin-bottom: 15px; }
 }

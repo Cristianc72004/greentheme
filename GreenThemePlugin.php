@@ -80,6 +80,13 @@ class GreenThemePlugin extends ThemePlugin
             $this->addStyle('bootstrap-rtl', 'styles/bootstrap-rtl.min.css');
         }
 
+        // ====== CSS propio del tema (logo/hero/barra de logos/overrides) ======
+        // Se carga al final para sobreescribir los estilos del skin elegido.
+        $this->addStyle('greentheme-custom', 'styles/greentheme.css', [
+            'priority' => STYLE_SEQUENCE_LATE,
+            'contexts' => 'frontend',
+        ]);
+
         // jQuery desde build local (respetando minificación de OJS)
         $min = Config::getVar('general', 'enable_minified') ? '.min' : '';
         $request = Application::get()->getRequest();
