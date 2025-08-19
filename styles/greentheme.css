@@ -1,5 +1,5 @@
 /* =======================
-   GreenTheme – estilos base (ajustado)
+   GreenTheme – estilos base (final)
    ======================= */
 
 /* Resets y seguridad anti-scroll */
@@ -13,7 +13,7 @@ html, body, .pkp_structure_page { overflow-x: hidden; }
 .pkp_structure_page > .row { margin-left: 0; margin-right: 0; }
 
 /* ----- Header / marca ----- */
-.gwj-header { padding: 12px 0 6px; }
+.gwj-header { padding: 8px 0 4px; }
 
 /* Contenedor de marca: logo + título imagen */
 .gwj-brand{
@@ -24,21 +24,21 @@ html, body, .pkp_structure_page { overflow-x: hidden; }
 }
 
 /* Logo redondo */
-.gwj-logo{ height:72px; width:auto; }
+.gwj-logo{ height:64px; width:auto; }
 
-/* Título como imagen (alineado con el logo) */
+/* Título como imagen */
 .gwj-title-img{
   display:inline-block;
-  height:48px;            /* ajusta según el PNG */
+  height:42px;          
   width:auto;
   vertical-align:middle;
   margin:0;
 }
 
-/* ISSN DEBAJO del bloque de marca */
+/* ISSN */
 .gwj-issn-row{
   margin-top:4px;
-  margin-left:84px;       /* 72px (logo) + 12px de gap ==> alinea visualmente */
+  margin-left:76px;    
   line-height:1.1;
 }
 .gwj-issn-row .issn-link{
@@ -49,40 +49,60 @@ html, body, .pkp_structure_page { overflow-x: hidden; }
 .gwj-issn-row .issn-link:hover,
 .gwj-issn-row .issn-link:focus{ text-decoration:underline; }
 
-/* Barra de logos (aliados/índices) */
+/* Logos aliados */
 .partner-logos{
   display:flex;
   justify-content:flex-end;
-  gap:16px;
+  gap:14px;
   align-items:center;
   flex-wrap:wrap;
 }
 .partner-logos img{ height:34px; width:auto; opacity:.95; max-width:100%; }
 
-/* Navbar (look limpio) */
-header.navbar.navbar-default{ background:#fff; border:none; box-shadow:0 1px 0 rgba(0,0,0,.06); }
-header.navbar.navbar-default .navbar-nav > li > a{ padding-top:15px; padding-bottom:15px; }
+/* --- Barra de búsqueda (ajustada absoluta) --- */
+.col-sm-4.text-right {
+  position: relative; /* para que el buscador se ubique dentro */
+}
 
-/* ========== CONTENIDO (sidebar + main) ========== */
+.gwj-search-bar { 
+  position: absolute;
+  top: 100px;        /* ajusta altura debajo de los logos */
+  right: 20px;      /* lo pega más a la derecha */
+  width: 280px;
+}
+
+.gwj-search-bar form {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Navbar */
+header.navbar.navbar-default{
+  background:#fff;
+  border:none;
+  box-shadow:0 1px 0 rgba(0,0,0,.06);
+}
+header.navbar.navbar-default .navbar-nav > li > a{
+  padding-top:14px;
+  padding-bottom:14px;
+}
+
+/* Contenido */
 .pkp-content-fluid{ padding-left:8px; padding-right:8px; }
 .pkp-content-fluid .row{ margin-left:-8px; margin-right:-8px; }
 .pkp-content-fluid [class*="col-"]{ padding-left:8px; padding-right:8px; }
 
-/* Sidebar bien pegado a la izquierda */
+/* Sidebar */
 .gwj-sidebar{ padding-left:0; padding-right:6px; }
+.pkp_structure_main{ padding-left:0px; padding-right:14px; }
 
-/* “Aire” lateral al contenido principal (alineación visual con cabecera) */
-.pkp_structure_main{
-  padding-left:0px;
-  padding-right:14px;
-}
-
-/* ----- Hero de portada ----- */
+/* Hero */
 .gwj-hero{
   position:relative;
-  /* más angosto y centrado */
-  max-width: 1000px;      /* <-- ajusta aquí si lo quieres más/menos ancho */
-  margin:12px auto 24px;  /* centra dentro del main */
+  max-width: 1000px;     
+  margin:12px auto 24px;  
   width:100%;
 }
 .gwj-hero img{
@@ -100,17 +120,16 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:15px; padding-bot
   border-color:rgba(0,0,0,.1);
 }
 
-/* ====== Menú lateral ====== */
+/* Menú lateral */
 .gwj-sidemenu{
   background:#fff;
   border:1px solid #d9e2e1;
   border-radius:3px;
   overflow:visible;
   position:relative;
-  width: 200px; 
-  /* Ajustes para pegarlo al hero y alinearlo con el logo superior */
-  margin-top:10px;   /* lo sube para que no quede espacio grande con el hero */
-  margin-left:50px;    /* leve sangrado para que la caja alinee vertical con el logo */
+  width:210px; 
+  margin-top:10px;   
+  margin-left:40px;    
 }
 .gwj-sidemenu ul{ list-style:none; margin:0; padding:0; }
 .gwj-sidemenu li{ position:relative; }
@@ -143,7 +162,7 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:15px; padding-bot
   background:#2f9a8f; color:#fff; border-bottom-color:transparent;
 }
 
-/* ====== Menú vertical opcional en header ====== */
+/* Menú vertical en header */
 .gwj-primary-nav .gwj-vertical-menu.nav > li{ float:none; }
 .gwj-primary-nav .gwj-vertical-menu > li > a{
   display:block; padding:10px 12px; color:#2c3e50; text-decoration:none;
@@ -155,7 +174,7 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:15px; padding-bot
   background:#2f9a8f; color:#fff; border-color:#2f9a8f;
 }
 
-/* Ocultar banda PKP y desactivar imagen nativa */
+/* Ocultar marca PKP */
 .pkp_brand_footer, .pkp_branding{ display:none !important; }
 #homepageImage{ display:none; }
 
@@ -163,19 +182,18 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:15px; padding-bot
 .mt-20{ margin-top:20px; }
 .mb-20{ margin-bottom:20px; }
 
-/* ----- Responsive ----- */
+/* Responsive */
 @media (max-width: 991px){
-  .gwj-logo{ height:60px; }
-  .gwj-title-img{ height:38px; }
-  .gwj-issn-row{ margin-left:72px; }
+  .gwj-logo{ height:56px; }
+  .gwj-title-img{ height:34px; }
+  .gwj-issn-row{ margin-left:68px; }
   .partner-logos{ justify-content:flex-start; margin-top:8px; }
   .gwj-hero{ max-width: 860px; }
 }
-
 @media (max-width: 767px){
-  .gwj-logo{ height:48px; }
+  .gwj-logo{ height:44px; }
   .gwj-title-img{ height:28px; }
-  .gwj-issn-row{ margin-left:60px; }
+  .gwj-issn-row{ margin-left:56px; }
   .gwj-hero{ max-width: 100%; }
   .gwj-hero img{ height:240px; }
   .gwj-sidebar{ padding-right:0; margin-bottom:15px; }

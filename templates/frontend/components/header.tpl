@@ -71,19 +71,15 @@
 								<img src="{$pluginBaseUrl}/images/road.jpg" alt="ROAD">
 							</a>
 						</div>
+
+						{* Buscador debajo de logos *}
+						{if $currentContext}
+							<div class="gwj-search-bar">
+								{include file="frontend/components/searchForm_simple.tpl"}
+							</div>
+						{/if}
 					</div>
 				</div>
-			</div>
-
-			{* Buscador *}
-			<div class="container">
-				{if $currentContext}
-					<div class="row">
-						<div class="col-sm-6 col-sm-offset-6 text-right">
-							{include file="frontend/components/searchForm_simple.tpl"}
-						</div>
-					</div>
-				{/if}
 			</div>
 
 		</header><!-- .pkp_structure_head -->
