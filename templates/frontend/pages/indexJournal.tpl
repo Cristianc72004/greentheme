@@ -14,15 +14,14 @@
 	{call_hook name="Templates::Index::journal"}
 
 	{* ==== HERO de portada (imagen fija del plugin) ==== *}
-	<div class="container">
-		<div class="gwj-hero">
-			<img src="{$pluginBaseUrl}/images/fondo.jpg" alt="{$currentJournal->getLocalizedName()|escape}">
-			<div class="gwj-cta">
-				<a class="btn btn-default btn-lg"
-				   href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="submissions"}">
-					{translate key="about.submissions"}
-				</a>
-			</div>
+	{* Quitamos el .container para reducir el margen entre el menú (col-sm-3) y la imagen *}
+	<div class="gwj-hero">
+		<img src="{$pluginBaseUrl}/images/fondo.jpg" alt="{$currentJournal->getLocalizedName()|escape}">
+		<div class="gwj-cta">
+			<a class="btn btn-default btn-lg"
+			   href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="submissions"}">
+				{translate key="about.submissions"}
+			</a>
 		</div>
 	</div>
 

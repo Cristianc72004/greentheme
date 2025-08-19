@@ -33,9 +33,11 @@
 			{* Menú de usuario (perfil, login, etc.) *}
 			<div class="container-fluid">
 				<div class="row">
-					<nav aria-label="{translate|escape key="common.navigation.user"}">
-						{load_menu name="user" id="navigationUser" ulClass="nav nav-pills tab-list pull-right"}
-					</nav>
+					<div class="col-xs-12">
+						<nav aria-label="{translate|escape key="common.navigation.user"}">
+							{load_menu name="user" id="navigationUser" ulClass="nav nav-pills tab-list pull-right"}
+						</nav>
+					</div>
 				</div>
 			</div>
 
@@ -45,13 +47,21 @@
 					<div class="col-sm-8">
 						{capture assign="homeUrl"}{url page="index" router=\PKP\core\PKPApplication::ROUTE_PAGE}{/capture}
 						<a class="gwj-brand" href="{$homeUrl}">
+							{* Logo redondo *}
 							<img class="gwj-logo" src="{$pluginBaseUrl}/images/logo-gwj.png" alt="{$currentContext->getLocalizedName()|escape}">
-							<div>
-								<div class="gwj-title">{$currentContext->getLocalizedName()|escape}</div>
-								<div class="gwj-issn">e-ISSN 2737-6109</div>
-							</div>
+
+							{* Título como imagen alineado con el logo *}
+							<img class="gwj-title-img" src="{$pluginBaseUrl}/images/greenworldjournal.png" alt="{$currentContext->getLocalizedName()|escape}">
+
+							{* E-ISSN visible pero clickeable (mismo estilo de texto) *}
+							<span class="gwj-issn">
+								<a class="issn-link" href="https://portal.issn.org/resource/ISSN/2737-6109#" target="_blank" rel="noopener">
+									e-ISSN 2737-6109
+								</a>
+							</span>
 						</a>
 					</div>
+
 					<div class="col-sm-4 text-right">
 						<div class="partner-logos">
 							<img src="{$pluginBaseUrl}/images/camera.png" alt="CaMeRa">
@@ -62,7 +72,7 @@
 				</div>
 			</div>
 
-			{* Buscador (dejamos el primary nav SOLO en el sidebar global) *}
+			{* Buscador *}
 			<div class="container">
 				{if $currentContext}
 					<div class="row">
@@ -75,8 +85,9 @@
 
 		</header><!-- .pkp_structure_head -->
 
-		{* ====== LAYOUT GLOBAL: SIDEBAR IZQUIERDO (MENÚ VERTICAL) + MAIN ====== *}
-		<div class="pkp_structure_content container">
+		{* ====== LAYOUT GLOBAL: SIDEBAR IZQUIERDO + MAIN ====== *}
+		{* container -> container-fluid para eliminar espacios laterales *}
+		<div class="pkp_structure_content container-fluid pkp-content-fluid">
 			<div class="row">
 
 				{* Sidebar global con el menú principal vertical *}
