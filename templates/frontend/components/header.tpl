@@ -92,12 +92,12 @@
 		<div class="pkp_structure_content container-fluid pkp-content-fluid">
 			<div class="row">
 
-				{* Sidebar global con el menú principal vertical *}
-				<aside id="sidebar" class="gwj-sidebar col-sm-3" role="navigation" aria-label="{translate|escape key="plugins.themes.greentheme.accessible_menu.main_navigation"}">
+				{* Sidebar más angosto *}
+				<aside id="sidebar" class="gwj-sidebar col-xs-12 col-sm-2" role="navigation" aria-label="{translate|escape key="plugins.themes.greentheme.accessible_menu.main_navigation"}">
 					<nav class="gwj-sidemenu">
 						{load_menu name="primary" id="main-navigation" ulClass="nav nav-pills nav-stacked"}
 					</nav>
 				</aside>
 
-				{* Contenido de cada página *}
-				<main id="main-content" class="pkp_structure_main col-xs-12 col-sm-9" role="main">
+				{* Main más ancho *}
+				<main id="main-content" class="pkp_structure_main col-xs-12 col-sm-10" role="main">

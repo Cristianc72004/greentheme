@@ -63,20 +63,27 @@ html, body, .pkp_structure_page { overflow-x: hidden; }
 header.navbar.navbar-default{ background:#fff; border:none; box-shadow:0 1px 0 rgba(0,0,0,.06); }
 header.navbar.navbar-default .navbar-nav > li > a{ padding-top:15px; padding-bottom:15px; }
 
-/* ========== CONTENIDO (sidebar + main) A PANTALLA COMPLETA ========== */
+/* ========== CONTENIDO (sidebar + main) ========== */
 .pkp-content-fluid{ padding-left:8px; padding-right:8px; }
 .pkp-content-fluid .row{ margin-left:-8px; margin-right:-8px; }
 .pkp-content-fluid [class*="col-"]{ padding-left:8px; padding-right:8px; }
 
 /* Sidebar bien pegado a la izquierda */
-.gwj-sidebar{ padding-left:0; padding-right:4px; }
+.gwj-sidebar{ padding-left:0; padding-right:6px; }
+
+/* “Aire” lateral al contenido principal (alineación visual con cabecera) */
+.pkp_structure_main{
+  padding-left:0px;
+  padding-right:14px;
+}
 
 /* ----- Hero de portada ----- */
 .gwj-hero{
   position:relative;
-  margin:12px 0 24px;
+  /* más angosto y centrado */
+  max-width: 1000px;      /* <-- ajusta aquí si lo quieres más/menos ancho */
+  margin:12px auto 24px;  /* centra dentro del main */
   width:100%;
-  max-width:none;
 }
 .gwj-hero img{
   display:block;
@@ -100,6 +107,10 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:15px; padding-bot
   border-radius:3px;
   overflow:visible;
   position:relative;
+  width: 200px; 
+  /* Ajustes para pegarlo al hero y alinearlo con el logo superior */
+  margin-top:10px;   /* lo sube para que no quede espacio grande con el hero */
+  margin-left:50px;    /* leve sangrado para que la caja alinee vertical con el logo */
 }
 .gwj-sidemenu ul{ list-style:none; margin:0; padding:0; }
 .gwj-sidemenu li{ position:relative; }
@@ -156,14 +167,16 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:15px; padding-bot
 @media (max-width: 991px){
   .gwj-logo{ height:60px; }
   .gwj-title-img{ height:38px; }
-  .gwj-issn-row{ margin-left:72px; } /* un poco menos para pantallas medianas */
+  .gwj-issn-row{ margin-left:72px; }
   .partner-logos{ justify-content:flex-start; margin-top:8px; }
+  .gwj-hero{ max-width: 860px; }
 }
 
 @media (max-width: 767px){
   .gwj-logo{ height:48px; }
   .gwj-title-img{ height:28px; }
-  .gwj-issn-row{ margin-left:60px; } /* reduce el offset en móvil */
+  .gwj-issn-row{ margin-left:60px; }
+  .gwj-hero{ max-width: 100%; }
   .gwj-hero img{ height:240px; }
   .gwj-sidebar{ padding-right:0; margin-bottom:15px; }
   .pkp-content-fluid{ padding-left:10px; padding-right:10px; }
