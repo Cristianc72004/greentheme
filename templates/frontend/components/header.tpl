@@ -46,27 +46,30 @@
 				<div class="row">
 					<div class="col-sm-8">
 						{capture assign="homeUrl"}{url page="index" router=\PKP\core\PKPApplication::ROUTE_PAGE}{/capture}
+
+						{* Logo + título en imagen *}
 						<a class="gwj-brand" href="{$homeUrl}">
-							{* Logo redondo *}
 							<img class="gwj-logo" src="{$pluginBaseUrl}/images/logo-gwj.png" alt="{$currentContext->getLocalizedName()|escape}">
-
-							{* Título como imagen alineado con el logo *}
 							<img class="gwj-title-img" src="{$pluginBaseUrl}/images/greenworldjournal.png" alt="{$currentContext->getLocalizedName()|escape}">
-
-							{* E-ISSN visible pero clickeable (mismo estilo de texto) *}
-							<span class="gwj-issn">
-								<a class="issn-link" href="https://portal.issn.org/resource/ISSN/2737-6109#" target="_blank" rel="noopener">
-									e-ISSN 2737-6109
-								</a>
-							</span>
 						</a>
+
+						{* ISSN debajo del bloque de marca *}
+						<div class="gwj-issn-row">
+							<a class="issn-link" href="https://portal.issn.org/resource/ISSN/2737-6109#" target="_blank" rel="noopener">
+								e-ISSN 2737-6109
+							</a>
+						</div>
 					</div>
 
 					<div class="col-sm-4 text-right">
 						<div class="partner-logos">
 							<img src="{$pluginBaseUrl}/images/camera.png" alt="CaMeRa">
-							<img src="{$pluginBaseUrl}/images/latindex.jpg" alt="Latindex">
-							<img src="{$pluginBaseUrl}/images/road.jpg" alt="ROAD">
+							<a href="https://latindex.org/latindex/ficha/25904" target="_blank" rel="noopener">
+								<img src="{$pluginBaseUrl}/images/latindex.jpg" alt="Latindex">
+							</a>
+							<a href="https://portal.issn.org/resource/ISSN/2737-6109#" target="_blank" rel="noopener">
+								<img src="{$pluginBaseUrl}/images/road.jpg" alt="ROAD">
+							</a>
 						</div>
 					</div>
 				</div>
@@ -86,7 +89,6 @@
 		</header><!-- .pkp_structure_head -->
 
 		{* ====== LAYOUT GLOBAL: SIDEBAR IZQUIERDO + MAIN ====== *}
-		{* container -> container-fluid para eliminar espacios laterales *}
 		<div class="pkp_structure_content container-fluid pkp-content-fluid">
 			<div class="row">
 
