@@ -232,3 +232,23 @@ header.navbar.navbar-default .navbar-nav > li > a{
 .gwj-footer .footer-social .social-icon:hover {
   opacity: 1;
 }
+/* ===== Botón transparente elegante ===== */
+.gwj-submit-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.6); /* blanco semi-transparente */
+  color: #222 !important;                     /* texto oscuro */
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);       /* borde muy suave */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.gwj-submit-btn:hover,
+.gwj-submit-btn:focus {
+  background-color: rgba(255, 255, 255, 0.85); /* más claro al hover */
+  color: #000 !important;
+  text-decoration: none;
+}

@@ -18,11 +18,11 @@
 	<div class="gwj-hero">
 		<img src="{$pluginBaseUrl}/images/fondo.jpg" alt="{$currentJournal->getLocalizedName()|escape}">
 		<div class="gwj-cta">
-			<a class="btn btn-default btn-lg"
-			   href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="submissions"}">
-				{translate key="about.submissions"}
-			</a>
-		</div>
+	<a class="gwj-submit-btn"
+	   href="{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="about" op="submissions"}">
+		{translate key="about.submissions"}
+	</a>
+</div>
 	</div>
 
 	{* ==== Imagen de inicio de OJS (desactivada para usar el hero del tema) ==== *}
