@@ -201,3 +201,34 @@ header.navbar.navbar-default .navbar-nav > li > a{
   .pkp-content-fluid .row{ margin-left:-10px; margin-right:-10px; }
   .pkp-content-fluid [class*="col-"]{ padding-left:10px; padding-right:10px; }
 }
+
+/* ====== Footer personalizado ====== */
+.gwj-footer {
+  background: #fff;
+  border-top: 1px solid #e6eeee;
+  padding: 20px 0;
+  font-size: 14px;
+  color: #2c3e50;
+  margin-top: 40px;
+}
+.gwj-footer .footer-info p {
+  margin: 0 0 6px;
+  line-height: 1.5;
+}
+.gwj-footer .footer-info a {
+  color: #2c3e50;
+  text-decoration: none;
+}
+.gwj-footer .footer-info a:hover {
+  text-decoration: underline;
+}
+.gwj-footer .footer-social .social-icon {
+  height: 28px;
+  width: 28px;
+  margin-left: 8px;
+  opacity: .9;
+  transition: opacity .2s ease;
+}
+.gwj-footer .footer-social .social-icon:hover {
+  opacity: 1;
+}
