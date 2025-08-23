@@ -60,9 +60,7 @@ html, body, .pkp_structure_page { overflow-x: hidden; }
 .partner-logos img{ height:34px; width:auto; opacity:.95; max-width:100%; }
 
 /* --- Barra de búsqueda (ajustada absoluta) --- */
-.col-sm-4.text-right {
-  position: relative; /* para que el buscador se ubique dentro */
-}
+.col-sm-4.text-right { position: relative; } /* para que el buscador se ubique dentro */
 
 .gwj-search-bar { 
   position: absolute;
@@ -94,9 +92,39 @@ header.navbar.navbar-default .navbar-nav > li > a{
 .pkp-content-fluid .row{ margin-left:-8px; margin-right:-8px; }
 .pkp-content-fluid [class*="col-"]{ padding-left:8px; padding-right:8px; }
 
-/* Sidebar */
-.gwj-sidebar{ padding-left:0; padding-right:6px; }
-.pkp_structure_main{ padding-left:0px; padding-right:14px; }
+/* =========================
+   LAYOUT SIDEBAR + MAIN
+   (Ajustes de separación)
+   ========================= */
+
+/* Sidebar (más respiración visual y divisor sutil) */
+.gwj-sidebar{
+  padding-left:0;
+  padding-right:16px;              /* ↑ Antes: 6px */
+  border-right:1px solid #e6eeee;  /* NUEVO: separador */
+}
+
+/* Main con mayor holgura desde el menú lateral */
+.pkp_structure_main{
+  padding-left:24px;  /* ↑ Antes: 0px  -> separa del menú lateral */
+  padding-right:14px;
+}
+
+/* ===== Breadcrumbs (separación y limpieza) ===== */
+.cmp_breadcrumbs{
+  margin:6px 0 18px;               /* NUEVO: despega de sidebar y encabezados */
+}
+.cmp_breadcrumbs .breadcrumb{
+  background:transparent;
+  padding-left:0;                   /* alinea con contenido */
+  margin-bottom:0;
+  border-radius:0;
+}
+.cmp_breadcrumbs .breadcrumb > li + li:before{
+  content:"/";                      /* separador simple y accesible */
+  padding:0 6px;
+  color:#90a4ae;
+}
 
 /* Hero */
 .gwj-hero{
@@ -129,7 +157,7 @@ header.navbar.navbar-default .navbar-nav > li > a{
   position:relative;
   width:210px; 
   margin-top:10px;   
-  margin-left:40px;    
+  margin-left:20px;    /* ↓ Antes: 40px (dejaba el main más pegado) */
 }
 .gwj-sidemenu ul{ list-style:none; margin:0; padding:0; }
 .gwj-sidemenu li{ position:relative; }
@@ -174,6 +202,20 @@ header.navbar.navbar-default .navbar-nav > li > a{
   background:#2f9a8f; color:#fff; border-color:#2f9a8f;
 }
 
+/* ===== Página de Login (más aire y centrado) ===== */
+.page_login { padding-top: 8px; }
+.page_login .cmp_breadcrumbs { margin-bottom: 20px; }
+.page_login .pkp_form.login{
+  max-width:520px;
+  margin: 0;                    /* base */
+}
+@media (min-width: 768px){
+  .page_login .pkp_form.login{ margin-left:24px; } /* despega del sidebar */
+}
+@media (min-width: 992px){
+  .page_login .pkp_form.login{ margin-left:28px; } /* un poco más en desktop */
+}
+
 /* Ocultar marca PKP */
 .pkp_brand_footer, .pkp_branding{ display:none !important; }
 #homepageImage{ display:none; }
@@ -189,6 +231,11 @@ header.navbar.navbar-default .navbar-nav > li > a{
   .gwj-issn-row{ margin-left:68px; }
   .partner-logos{ justify-content:flex-start; margin-top:8px; }
   .gwj-hero{ max-width: 860px; }
+
+  /* En tablets quitamos el borde para no recargar */
+  .gwj-sidebar{ border-right:none; padding-right:12px; }
+  .pkp_structure_main{ padding-left:18px; }
+  .gwj-sidemenu{ margin-left:12px; }
 }
 @media (max-width: 767px){
   .gwj-logo{ height:44px; }
@@ -196,10 +243,15 @@ header.navbar.navbar-default .navbar-nav > li > a{
   .gwj-issn-row{ margin-left:56px; }
   .gwj-hero{ max-width: 100%; }
   .gwj-hero img{ height:240px; }
-  .gwj-sidebar{ padding-right:0; margin-bottom:15px; }
+
+  .gwj-sidebar{ padding-right:0; border-right:none; margin-bottom:15px; }
   .pkp-content-fluid{ padding-left:10px; padding-right:10px; }
   .pkp-content-fluid .row{ margin-left:-10px; margin-right:-10px; }
   .pkp-content-fluid [class*="col-"]{ padding-left:10px; padding-right:10px; }
+  .pkp_structure_main{ padding-left:10px; padding-right:10px; }
+
+  /* Breadcrumbs compactos en móvil */
+  .cmp_breadcrumbs{ margin:4px 0 12px; }
 }
 
 /* ====== Footer personalizado ====== */
@@ -219,9 +271,7 @@ header.navbar.navbar-default .navbar-nav > li > a{
   color: #2c3e50;
   text-decoration: none;
 }
-.gwj-footer .footer-info a:hover {
-  text-decoration: underline;
-}
+.gwj-footer .footer-info a:hover { text-decoration: underline; }
 .gwj-footer .footer-social .social-icon {
   height: 28px;
   width: 28px;
@@ -229,9 +279,8 @@ header.navbar.navbar-default .navbar-nav > li > a{
   opacity: .9;
   transition: opacity .2s ease;
 }
-.gwj-footer .footer-social .social-icon:hover {
-  opacity: 1;
-}
+.gwj-footer .footer-social .social-icon:hover { opacity: 1; }
+
 /* ===== Botón transparente elegante ===== */
 .gwj-submit-btn {
   display: inline-block;
@@ -239,16 +288,15 @@ header.navbar.navbar-default .navbar-nav > li > a{
   font-size: 16px;
   font-weight: 500;
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.6); /* blanco semi-transparente */
-  color: #222 !important;                     /* texto oscuro */
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #222 !important;
   text-decoration: none;
-  border: 1px solid rgba(0, 0, 0, 0.1);       /* borde muy suave */
+  border: 1px solid rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 .gwj-submit-btn:hover,
 .gwj-submit-btn:focus {
-  background-color: rgba(255, 255, 255, 0.85); /* más claro al hover */
+  background-color: rgba(255, 255, 255, 0.85);
   color: #000 !important;
   text-decoration: none;
 }
