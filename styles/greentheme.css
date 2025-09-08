@@ -233,3 +233,15 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:14px; padding-bot
   max-width: 85%;   /* ajusta el ancho a lo que quieras */
   line-height: 1.6;   /* mejora la lectura */
 }
+
+/* Contenedor de texto del Privacy */
+.page_privacy {
+  max-width: 85%;   /* ajusta el ancho a lo que quieras */
+  line-height: 1.6;   /* mejora la lectura */
+}
+
+/* Contenedor de texto del submissions */
+.page_submissions {
+  max-width: 85%;   /* ajusta el ancho a lo que quieras */
+  line-height: 1.6;   /* mejora la lectura */
+}
