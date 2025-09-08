@@ -227,3 +227,10 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:14px; padding-bot
   border:1px solid rgba(0,0,0,0.1); transition:background-color .3s ease,color .3s ease;
 }
 .gwj-submit-btn:hover, .gwj-submit-btn:focus{ background-color:rgba(255,255,255,0.85); color:#000 !important; text-decoration:none; }
+
+/* Contenedor de texto del About */
+.page_about {
+  max-width: 860px;   /* ajusta el ancho a lo que quieras */
+  margin: 0 auto;     /* centra horizontalmente */
+  line-height: 1.6;   /* mejora la lectura */
+}
