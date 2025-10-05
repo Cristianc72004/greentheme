@@ -274,3 +274,109 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:14px; padding-bot
     transform: none !important;
   }
 }
+
+/* ============================
+   ARCHIVE PAGE – VOLUMENES (ajuste compacto)
+   ============================ */
+
+/* Título de volumen */
+.pkp_volume_title {
+  font-family: 'Lato', sans-serif;
+  color: #1e5631;
+  border-bottom: 2px solid #cde0c0;
+  display: inline-block;
+  padding-bottom: 4px;
+  margin: 36px 0 20px;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+/* Contenedor general del grid */
+.gwj-issue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 20px;                    /* 🔹 reducido de 32px a 20px */
+  justify-items: center;
+  align-items: start;
+  margin-bottom: 45px;
+  width: 100%;
+  max-width: 1150px;            /* 🔹 un poco más angosto para acercar tarjetas */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Tarjeta del número */
+.gwj-issue-card {
+  text-align: center;
+  background: #fff;
+  border: 1px solid #e6eeee;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 320px;             /* 🔹 antes 340px, así caben más cerca */
+  width: 100%;
+}
+
+.gwj-issue-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagen de portada */
+.gwj-issue-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Título */
+.gwj-issue-card a.issue-title {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 15px;
+  color: #2c3e50;
+  text-decoration: none;
+}
+
+.gwj-issue-card a.issue-title:hover {
+  color: #2f9a8f;
+  text-decoration: underline;
+}
+
+/* Datos adicionales (volumen, año) */
+.gwj-issue-card .issue-meta {
+  font-size: 13px;
+  color: #60717a;
+  line-height: 1.4;
+}
+
+/* ===== Responsividad ===== */
+@media (max-width: 992px) {
+  .gwj-issue-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;                  /* 🔹 aún más compacto en tablet */
+  }
+  .gwj-issue-card {
+    max-width: 270px;
+  }
+  .gwj-issue-card img {
+    height: 190px;
+  }
+}
+
+@media (max-width: 600px) {
+  .gwj-issue-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .gwj-issue-card {
+    max-width: 90%;
+  }
+  .gwj-issue-card img {
+    height: 180px;
+  }
+}
