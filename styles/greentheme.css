@@ -274,84 +274,96 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:14px; padding-bot
     transform: none !important;
   }
 }
-
 /* ============================
-   ARCHIVE PAGE – VOLUMENES (espaciado optimizado)
+   ARCHIVE PAGE – VOLUMENES (Green Modern Edition)
    ============================ */
 
-/* Título de volumen */
 .pkp_volume_title {
   font-family: 'Lato', sans-serif;
   color: #1e5631;
-  border-bottom: 2px solid #cde0c0;
+  border-bottom: 2px solid #a3d9a5;
   display: inline-block;
-  padding-bottom: 3px;
-  margin: 28px 0 14px;   /* 🔹 antes 36px 0 20px — se redujo */
-  font-weight: 700;
-  font-size: 21px;
+  padding-bottom: 4px;
+  margin: 28px 0 10px;
+  font-weight: 800;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* Contenedor general del grid */
+.gwj-volume-line {
+  width: 70px;
+  height: 3px;
+  background: linear-gradient(90deg, #2f9a8f, #1e5631);
+  margin: 8px auto 20px;
+  border-radius: 2px;
+}
+
+/* Contenedor del grid */
 .gwj-issue-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 16px;               /* 🔹 antes 20px */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
   justify-items: center;
   align-items: start;
-  margin-bottom: 28px;     /* 🔹 antes 45px */
-  width: 100%;
-  max-width: 1100px;       /* 🔹 se estrecha un poco más */
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 32px;
+  max-width: 1150px;
+  margin-inline: auto;
 }
 
-/* Tarjeta del número */
+/* Tarjeta */
 .gwj-issue-card {
-  text-align: center;
-  background: #fff;
-  border: 1px solid #e6eeee;
-  border-radius: 10px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.07);
-  padding: 12px;           /* 🔹 antes 14px */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  max-width: 310px;
+  background: #ffffff;
+  border: 1px solid #e3eee7;
+  border-radius: 14px;
+  box-shadow: 0 2px 6px rgba(46, 125, 50, 0.12);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   width: 100%;
+  max-width: 320px;
 }
 
 .gwj-issue-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(46, 125, 50, 0.25);
+  border-color: #2f9a8f;
 }
 
-/* Imagen de portada */
-.gwj-issue-card img {
+/* Imagen */
+.gwj-issue-media img {
   width: 100%;
-  height: 200px;           /* 🔹 igual tamaño, pero reduce espacio visual */
+  height: 200px;
   object-fit: cover;
-  object-position: center;
-  border-radius: 8px;
-  margin-bottom: 8px;      /* 🔹 antes 10px */
+  border-bottom: 3px solid #a3d9a5;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+.gwj-issue-card:hover img {
+  filter: brightness(1.08);
+  transform: scale(1.02);
 }
 
-/* Título */
+/* Cuerpo de la tarjeta */
+.gwj-issue-body {
+  padding: 12px 10px 14px;
+}
+
 .gwj-issue-card a.issue-title {
-  display: inline-block;
+  display: block;
   font-weight: 700;
   font-size: 15px;
-  color: #2c3e50;
+  color: #1e5631;
   text-decoration: none;
-  line-height: 1.2;
+  margin-bottom: 4px;
+  transition: color 0.2s ease;
 }
-
 .gwj-issue-card a.issue-title:hover {
   color: #2f9a8f;
   text-decoration: underline;
 }
 
-/* Datos adicionales (volumen, año) */
 .gwj-issue-card .issue-meta {
   font-size: 13px;
-  color: #60717a;
+  color: #4a5b53;
   line-height: 1.3;
 }
 
@@ -359,11 +371,7 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:14px; padding-bot
 @media (max-width: 992px) {
   .gwj-issue-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 14px;
-    margin-bottom: 24px;
-  }
-  .gwj-issue-card {
-    max-width: 270px;
+    gap: 16px;
   }
   .gwj-issue-card img {
     height: 180px;
@@ -375,10 +383,224 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:14px; padding-bot
     grid-template-columns: 1fr;
     gap: 14px;
   }
-  .gwj-issue-card {
-    max-width: 92%;
-  }
   .gwj-issue-card img {
     height: 170px;
   }
+}
+/* ============================
+   ISSUE PAGE – Diseño moderno (Green Edition)
+   ============================ */
+
+/* Bloque principal */
+.gwj-issue-toc {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  padding: 0 10px;
+  font-family: 'Lato', sans-serif;
+}
+
+/* Cabecera del número */
+.gwj-issue-header {
+  display: flex;
+  flex-wrap: wrap;
+  background: #ffffff;
+  border: 1px solid #e6eeee;
+  border-left: 5px solid #2f9a8f;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  padding: 16px;
+  margin-bottom: 28px;
+  align-items: center;
+}
+
+.gwj-issue-cover img {
+  width: 260px;
+  height: auto;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.gwj-issue-info {
+  flex: 1;
+}
+
+.gwj-issue-title {
+  font-weight: 800;
+  color: #1e5631;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.gwj-issue-desc {
+  color: #3a4b44;
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+
+.gwj-issue-date,
+.gwj-issue-doi {
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+/* Galleys */
+.gwj-full-issue {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.gwj-full-issue h2 {
+  font-size: 18px;
+  color: #1e5631;
+  font-weight: 700;
+  border-bottom: 2px solid #a3d9a5;
+  display: inline-block;
+  padding-bottom: 3px;
+  margin-bottom: 12px;
+}
+.gwj-galleys-btns a {
+  display: inline-block;
+  background: #2f9a8f;
+  color: #fff !important;
+  padding: 10px 18px;
+  border-radius: 6px;
+  margin: 4px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+.gwj-galleys-btns a:hover {
+  background: #1e5631;
+}
+
+/* Artículos */
+.gwj-issue-articles {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.gwj-section-title {
+  font-size: 18px;
+  color: #1e5631;
+  font-weight: 700;
+  border-left: 4px solid #2f9a8f;
+  padding-left: 8px;
+  margin-bottom: 14px;
+}
+.gwj-article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+.gwj-article-grid .obj_article_summary {
+  background: #fff;
+  border: 1px solid #e6eeee;
+  border-radius: 8px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.gwj-article-grid .obj_article_summary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(47, 154, 143, 0.25);
+  border-color: #2f9a8f;
+}
+.obj_article_summary h3.title {
+  color: #1e5631;
+  font-size: 16px;
+  font-weight: 700;
+}
+.obj_article_summary .meta {
+  color: #4a5b63;
+  font-size: 13px;
+  margin-top: 6px;
+}
+.obj_article_summary .read-more a {
+  color: #2f9a8f;
+  font-weight: 600;
+  text-decoration: none;
+}
+.obj_article_summary .read-more a:hover {
+  text-decoration: underline;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .gwj-issue-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .gwj-issue-cover img {
+    margin: 0 0 12px;
+    width: 80%;
+  }
+  .gwj-article-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ============================
+   ARTÍCULOS (Color verde GreenTheme)
+   ============================ */
+
+/* Título de la sección “Artículos” */
+.obj_issue_toc h2, 
+.section h2,
+.gwj-section-title {
+  color: #1e5631 !important; /* Verde oscuro */
+  border-left: 4px solid #2f9a8f !important;
+  padding-left: 8px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+/* Títulos de artículos */
+.obj_article_summary h3.title a {
+  color: #1e5631 !important; /* Verde principal */
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.obj_article_summary h3.title a:hover {
+  color: #2f9a8f !important; /* Verde claro al pasar el mouse */
+  text-decoration: underline;
+}
+
+/* Autores y metadatos */
+.obj_article_summary .meta,
+.obj_article_summary .author {
+  color: #2f4f3e !important;
+}
+
+/* Botón PDF */
+.obj_galley_link,
+.pkp_button_primary,
+.obj_galley_link_pdf,
+a.galley-link {
+  background-color: #2f9a8f !important;
+  border-color: #2f9a8f !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 6px 14px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.obj_galley_link:hover,
+.pkp_button_primary:hover,
+.obj_galley_link_pdf:hover,
+a.galley-link:hover {
+  background-color: #1e5631 !important;
+  border-color: #1e5631 !important;
+  transform: translateY(-2px);
+}
+
+/* Quitar el color rojo residual de enlaces */
+a,
+a:visited {
+  color: #2f9a8f;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1e5631;
+  text-decoration: underline;
 }

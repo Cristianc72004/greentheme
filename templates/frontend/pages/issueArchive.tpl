@@ -1,7 +1,7 @@
-{**
+¿{**
  * plugins/themes/greentheme/templates/frontend/pages/issueArchive.tpl
- * Vista personalizada de archivo de números (GreenTheme)
- * Compatible con OJS 3.4.x (sin getUrl())
+ * Vista moderna (GreenTheme) con enfoque verde y minimalista
+ * Compatible con OJS 3.4.x
  *}
 {capture assign="pageTitle"}
     {if $prevPage}
@@ -34,24 +34,27 @@
                     <h2 class="pkp_volume_title">
                         Volume {$currentVol} ({$issue->getYear()})
                     </h2>
+                    <div class="gwj-volume-line"></div>
                 </div>
                 <div class="gwj-issue-grid">
             {/if}
 
             {assign var=cover value=$issue->getLocalizedCoverImageUrl()}
-
-            {* Obtener URL segura mediante router (OJS 3.4) *}
             {capture assign=issueUrl}
                 {url router=\PKP\core\PKPApplication::ROUTE_PAGE page="issue" op="view" path=$issue->getBestIssueId()}
             {/capture}
 
             <div class="gwj-issue-card">
-                {if $cover}
+                <div class="gwj-issue-media">
                     <a href="{$issueUrl|trim}">
-                        <img src="{$cover|escape}" alt="{$issue->getLocalizedTitle()|escape}">
+                        {if $cover}
+                            <img src="{$cover|escape}" alt="{$issue->getLocalizedTitle()|escape}">
+                        {else}
+                            <div class="gwj-placeholder">No cover</div>
+                        {/if}
                     </a>
-                {/if}
-                <div class="issue-info">
+                </div>
+                <div class="gwj-issue-body">
                     <a href="{$issueUrl|trim}" class="issue-title">
                         {$issue->getLocalizedTitle()|escape}
                     </a>
@@ -67,7 +70,6 @@
             {/if}
         {/foreach}
 
-        {* ==== Paginación original (sin tocar) ==== *}
         {if $prevPage > 1}
             {capture assign=prevUrl}{url router=\PKP\core\PKPApplication::ROUTE_PAGE page="issue" op="archive" path=$prevPage}{/capture}
         {elseif $prevPage === 1}
