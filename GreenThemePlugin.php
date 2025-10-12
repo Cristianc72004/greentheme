@@ -20,7 +20,7 @@ class GreenThemePlugin extends ThemePlugin
      */
     public function init()
     {
-        // ====== OPCIÓN: Subtema Bootstrap ======
+        // Opción: selección de subtema Bootstrap
         $this->addOption('bootstrapTheme', 'FieldOptions', [
             'type' => 'radio',
             'label' => __('plugins.themes.greentheme.options.bootstrapTheme.label'),
@@ -28,12 +28,16 @@ class GreenThemePlugin extends ThemePlugin
             'options' => [
                 [ 'value' => 'bootstrap3', 'label' => __('plugins.themes.greentheme.options.bootstrapTheme.bootstrap3') ],
                 [ 'value' => 'cerulean',   'label' => __('plugins.themes.greentheme.options.bootstrapTheme.cerulean') ],
+                [ 'value' => 'cleanblog',  'label' => __('plugins.themes.greentheme.options.bootstrapTheme.cleanblog') ],
                 [ 'value' => 'cosmo',      'label' => __('plugins.themes.greentheme.options.bootstrapTheme.cosmo') ],
+                [ 'value' => 'cyborg',     'label' => __('plugins.themes.greentheme.options.bootstrapTheme.cyborg') ],
+                [ 'value' => 'darkly',     'label' => __('plugins.themes.greentheme.options.bootstrapTheme.darkly') ],
                 [ 'value' => 'flatly',     'label' => __('plugins.themes.greentheme.options.bootstrapTheme.flatly') ],
                 [ 'value' => 'journal',    'label' => __('plugins.themes.greentheme.options.bootstrapTheme.journal') ],
                 [ 'value' => 'lumen',      'label' => __('plugins.themes.greentheme.options.bootstrapTheme.lumen') ],
                 [ 'value' => 'paper',      'label' => __('plugins.themes.greentheme.options.bootstrapTheme.paper') ],
                 [ 'value' => 'readable',   'label' => __('plugins.themes.greentheme.options.bootstrapTheme.readable') ],
+                [ 'value' => 'sandstone',  'label' => __('plugins.themes.greentheme.options.bootstrapTheme.sandstone') ],
                 [ 'value' => 'simplex',    'label' => __('plugins.themes.greentheme.options.bootstrapTheme.simplex') ],
                 [ 'value' => 'slate',      'label' => __('plugins.themes.greentheme.options.bootstrapTheme.slate') ],
                 [ 'value' => 'spacelab',   'label' => __('plugins.themes.greentheme.options.bootstrapTheme.spacelab') ],
@@ -44,7 +48,7 @@ class GreenThemePlugin extends ThemePlugin
             'default' => 'bootstrap3',
         ]);
 
-        // ====== OPCIÓN: Estadísticas ======
+        // Opción: visualización de estadísticas
         $this->addOption('displayStats', 'FieldOptions', [
             'type' => 'radio',
             'label' => __('plugins.themes.greentheme.option.displayStats.label'),
@@ -56,10 +60,10 @@ class GreenThemePlugin extends ThemePlugin
             'default' => 'none',
         ]);
 
-        // ====== Ruta al font de Bootstrap ======
+        // Ruta al font de glyphicons de Bootstrap
         $iconFontPath = Application::get()->getRequest()->getBaseUrl() . '/' . $this->getPluginPath() . '/bootstrap/fonts/';
 
-        // ====== Carga del subtema ======
+        // Carga del CSS según el subtema elegido
         $bootstrapTheme = $this->getOption('bootstrapTheme');
         if (empty($bootstrapTheme) || $bootstrapTheme === 'bootstrap3') {
             $this->addStyle('bootstrap', 'styles/bootstrap.less');
@@ -69,27 +73,21 @@ class GreenThemePlugin extends ThemePlugin
             $this->modifyStyle('bootstrapTheme-' . $bootstrapTheme, ['addLessVariables' => '@icon-font-path:"' . $iconFontPath . '";']);
         }
 
-        // ====== RTL ======
+        // RTL
         $locale = Locale::getLocale();
         $localeMetadata = Locale::getMetadata($locale);
         if ($localeMetadata->isRightToLeft() === 'rtl') {
             $this->addStyle('bootstrap-rtl', 'styles/bootstrap-rtl.min.css');
         }
 
-        // ====== CSS principal del tema ======
+        // ====== CSS propio del tema (logo/hero/barra de logos/overrides) ======
+        // Se carga al final para sobreescribir los estilos del skin elegido.
         $this->addStyle('greentheme-custom', 'styles/greentheme.css', [
             'priority' => STYLE_SEQUENCE_LATE,
             'contexts' => 'frontend',
         ]);
 
-        // ====== JS del tema ======
-        // Se carga después del resto de scripts, igual prioridad que el CSS
-        $this->addScript('greentheme-js', 'js/greentheme.js', [
-            'priority' => STYLE_SEQUENCE_LATE,
-            'contexts' => 'frontend',
-        ]);
-
-        // ====== Dependencias de OJS ======
+        // jQuery desde build local (respetando minificación de OJS)
         $min = Config::getVar('general', 'enable_minified') ? '.min' : '';
         $request = Application::get()->getRequest();
         $jquery   = $request->getBaseUrl() . '/js/build/jquery/jquery' . $min . '.js';
@@ -101,7 +99,7 @@ class GreenThemePlugin extends ThemePlugin
         // Bootstrap JS
         $this->addScript('bootstrap', 'bootstrap/js/bootstrap.min.js');
 
-        // ====== Menús ======
+        // Áreas de menú disponibles
         $this->addMenuArea(['primary', 'user']);
     }
 
@@ -118,7 +116,7 @@ class GreenThemePlugin extends ThemePlugin
     }
 }
 
-// Alias (compatibilidad)
+// Alias (compatibilidad si PKP_STRICT_MODE está desactivado)
 if (!defined('PKP_STRICT_MODE') || !PKP_STRICT_MODE) {
     class_alias('\APP\plugins\themes\greentheme\GreenThemePlugin', '\GreenThemePlugin');
 }

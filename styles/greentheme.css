@@ -21,8 +21,51 @@ html, body, .pkp_structure_page { overflow-x: hidden; }
 /* Logo redondo */
 .gwj-logo{ height:64px; width:auto; }
 
+
 /* Título como imagen */
 .gwj-title-img{ display:inline-block; height:42px; width:auto; vertical-align:middle; margin:0; }
+
+/* ============================
+   RESPONSIVIDAD – LOGO Y TÍTULO SOLO EN MÓVILES
+   ============================ */
+
+@media (max-width: 768px) {
+  .gwj-header {
+    text-align: center;
+  }
+
+  .gwj-brand {
+    display: flex;
+    flex-direction: column;   /* 🔹 logo arriba, título abajo */
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .gwj-logo {
+    height: 56px;             /* 🔹 un poco más pequeño solo en móvil */
+    width: auto;
+  }
+
+  .gwj-title-img {
+    height: 32px;             /* 🔹 mantiene proporción en pantallas pequeñas */
+    width: auto;
+  }
+
+  /* ISSN y logos aliados se centran */
+  .gwj-issn-row {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .partner-logos {
+    justify-content: center;  /* 🔹 centra los logos aliados */
+    flex-wrap: wrap;
+    margin-top: 8px;
+    gap: 10px;
+  }
+}
 
 /* ISSN */
 .gwj-issn-row{ margin-top:4px; margin-left:76px; line-height:1.1; }
