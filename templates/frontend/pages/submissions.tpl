@@ -1,28 +1,28 @@
 {**
- * templates/frontend/pages/submissions.tpl
- *
- * Copyright (c) 2014-2023 Simon Fraser University
- * Copyright (c) 2003-2023 John Willinsky
- * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
- *
- * @brief Display the page to view the editorial team.
- *
- * @uses $currentJournal Journal The current journal
- * @uses $submissionChecklist array List of requirements for submissions
+ * plugins/themes/greentheme/templates/frontend/pages/submissions.tpl
+ * Versión GreenTheme: Envíos modernos con acordeones (solo CSS)
+ * Mantiene: login/nuevo envío/envíos pendientes
+ * Añade: Documentos adicionales con scroll reiniciable
  *}
 {include file="frontend/components/header.tpl" pageTitle="about.submissions"}
 
-<div id="main-content" class="page page_submissions">
+<div id="main-content" class="page page_submissions gwn-submissions">
 
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.submissions"}
 
-	{* Page Title *}
-	<div class="page-header">
-		<h1>{translate key="about.submissions"}</h1>
-	</div>
-	{* /Page Title *}
+	<section class="gwn-header">
+		<div class="gwn-header-bg">
+			<h1 class="gwn-title">{translate key="about.submissions"}</h1>
+			<p class="gwn-subtitle">
+				Comparte tu investigación con el mundo, de forma ética y transparente.
+			</p>
+			<a href="{$baseUrl}/plugins/themes/greentheme/Doc/guia_autores.pdf" class="gwn-btn-download" target="_blank">
+				Descargar guía completa (PDF)
+			</a>
+		</div>
+	</section>
 
-	{* Login/register prompt *}
+	{* Bloque original de envío y usuario *}
 	{if $isUserLoggedIn}
 		{capture assign="newSubmission"}<a class="alert-link" href="{url page="submission" op="wizard"}">{translate key="about.onlineSubmissions.newSubmission"}</a>{/capture}
 		{capture assign="viewSubmissions"}<a class="alert-link" href="{url page="submissions"}">{translate key="about.onlineSubmissions.viewSubmissions"}</a>{/capture}
@@ -37,42 +37,55 @@
 		</div>
 	{/if}
 
-	{* Author Guidelines *}
-	{if $currentJournal->getLocalizedData('authorGuidelines')}
-		<div class="author_guidelines">
-			<h2 class="page-header">
-				{translate key="about.authorGuidelines"}
-				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="workflow" anchor="submission/instructions" sectionTitleKey="about.authorGuidelines"}
-			</h2>
-			{$currentJournal->getLocalizedData('authorGuidelines')}
-		</div>
-	{/if}
-	{* /Author Guidelines *}
+	<div class="gwn-submission-body container">
 
-	{* Submission Checklist *}
-	{if $submissionChecklist}
-		<div class="submission_checklist">
-			<h2 class="page-header">
-				{translate key="about.submissionPreparationChecklist"}
-				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="workflow" anchor="submission/instructions" sectionTitleKey="about.submissionPreparationChecklist"}
-			</h2>
-			{$submissionChecklist}
-		</div>
-	{/if}
-	{* /Submission Checklist *}
+		{* ==== Directrices ==== *}
+		{if $currentJournal->getLocalizedData('authorGuidelines')}
+			<div class="gwn-accordion">
+				<input type="checkbox" id="acc1" />
+				<label class="gwn-acc-title" for="acc1">Directrices para autores/as</label>
+				<div class="gwn-acc-content">
+					{$currentJournal->getLocalizedData('authorGuidelines')}
+				</div>
+			</div>
+		{/if}
 
-	{* Copyright Notice *}
-	{if $currentJournal->getLocalizedData('copyrightNotice')}
-		<div class="copyright-notice">
-			<h2 class="page-header">
-				{translate key="about.copyrightNotice"}
-				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="workflow" anchor="submission/instructions" sectionTitleKey="about.copyrightNotice"}
-			</h2>
-			{$currentJournal->getLocalizedData('copyrightNotice')}
-		</div>
-	{/if}
-	{* /Copyright Notice *}
+		{* ==== Lista de comprobación ==== *}
+		{if $submissionChecklist}
+			<div class="gwn-accordion">
+				<input type="checkbox" id="acc2" />
+				<label class="gwn-acc-title" for="acc2">Lista de comprobación para la preparación de envíos</label>
+				<div class="gwn-acc-content">
+					{$submissionChecklist}
+				</div>
+			</div>
+		{/if}
 
-</div><!-- .page -->
+		{* ==== Derechos de autor ==== *}
+		{if $currentJournal->getLocalizedData('copyrightNotice')}
+			<div class="gwn-accordion">
+				<input type="checkbox" id="acc3" />
+				<label class="gwn-acc-title" for="acc3">Derechos de autor</label>
+				<div class="gwn-acc-content">
+					{$currentJournal->getLocalizedData('copyrightNotice')}
+				</div>
+			</div>
+		{/if}
+
+		{* ==== Documentos adicionales ==== *}
+		<div class="gwn-accordion">
+			<input type="checkbox" id="acc4" />
+			<label class="gwn-acc-title" for="acc4">Documentos adicionales</label>
+			<div class="gwn-acc-content">
+				<ul>
+					<li><a href="{$baseUrl}/plugins/themes/greentheme/Doc/plantilla-articulo.docx" target="_blank">📘 Plantilla del artículo</a></li>
+					<li><a href="{$baseUrl}/plugins/themes/greentheme/Doc/guia_citaciones.pdf" target="_blank">📗 Guía de citaciones (APA 7ª edición)</a></li>
+					<li><a href="{$baseUrl}/plugins/themes/greentheme/Doc/guia_autores.pdf" target="_blank">📗 Guía completa para autores/as (PDF)</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+</div>
 
 {include file="common/frontend/footer.tpl"}
