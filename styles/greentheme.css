@@ -724,3 +724,221 @@ a:hover {
   background-color: #1e5631 !important;
   border-color: #1e5631 !important;
 }
+/* ============================
+   FUENTES ESTILO “JOURNAL” DE BOOTSTRAP
+   ============================ */
+
+/* Fuente base similar a Lora (serif elegante para textos) */
+body,
+p,
+.article-content,
+.gwn-acc-content {
+  font-family: "Georgia", "Cambria", "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #2c3e50;
+}
+
+/* Fuente de encabezados similar a Open Sans */
+h1, h2, h3, h4, h5, h6,
+.navbar,
+.btn,
+.page-header h2,
+.gwn-title,
+.pkp_volume_title,
+.section-title {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #1e5631;
+}
+
+/* Ajustes para párrafos secundarios y etiquetas */
+small, .meta, .issue-meta, footer {
+  font-family: "Georgia", "Cambria", "Times New Roman", serif;
+  font-size: 0.95em;
+  color: #4b4b4b;
+}
+/* ============================
+   PÁGINA DE BÚSQUEDA (Diseño moderno GreenTheme)
+   ============================ */
+
+.page_search {
+  padding: 30px 0;
+  background-color: #f9faf9;
+}
+
+/* ----- Título principal ----- */
+.page_search h1 {
+  color: #1e5631;
+  font-weight: 800;
+  font-size: 30px;
+  border-left: 6px solid #2f9a8f;
+  padding-left: 14px;
+  margin-bottom: 30px;
+}
+
+/* ----- Formulario de búsqueda ----- */
+.search-form {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-right: 4px solid #1e5631; /* 🔹 Borde derecho sutil */
+  transition: box-shadow 0.3s ease;
+}
+
+.search-form:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* ----- Campo principal de búsqueda ----- */
+.search-form .input-group {
+  border: 2px solid #dce9df;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+.search-form input.query {
+  border: none;
+  box-shadow: none;
+  height: 46px;
+  padding: 10px 14px;
+  font-size: 15px;
+}
+
+.search-form .input-group-btn .btn {
+  background: #1e5631;
+  color: #fff;
+  border: none;
+  height: 46px;
+  padding: 0 20px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.search-form .input-group-btn .btn:hover {
+  background: #2f9a8f;
+}
+
+/* ----- Filtros avanzados ----- */
+.search-advanced {
+  border-top: 1px solid #e3f1e7;
+  padding-top: 15px;
+  margin-top: 20px;
+}
+
+.search-advanced legend {
+  font-weight: 700;
+  color: #1e5631;
+  font-size: 17px;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.search-advanced label {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+.search-advanced .form-control {
+  border: 1px solid #d3e3d8;
+  border-radius: 6px;
+  height: 38px;
+  font-size: 14px;
+  box-shadow: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-advanced .form-control:focus {
+  border-color: #2f9a8f;
+  box-shadow: 0 0 0 2px rgba(47, 154, 143, 0.15);
+}
+
+/* ----- Resultados ----- */
+.search-results {
+  margin-top: 40px;
+}
+
+.search-results h2 {
+  color: #1e5631;
+  font-weight: 700;
+  font-size: 22px;
+  border-left: 5px solid #2f9a8f;
+  padding-left: 10px;
+  margin-bottom: 25px;
+}
+
+/* ----- Paginación ----- */
+.cmp_pagination {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.cmp_pagination .pagination {
+  display: inline-block;
+  border-radius: 8px;
+}
+
+.cmp_pagination .pagination li a {
+  color: #1e5631;
+  border-radius: 6px;
+  border: 1px solid #cde0c0;
+  margin: 0 3px;
+}
+
+.cmp_pagination .pagination li.active a,
+.cmp_pagination .pagination li a:hover {
+  background: #2f9a8f;
+  color: #fff;
+  border-color: #2f9a8f;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 768px) {
+  .search-form {
+    padding: 20px;
+  }
+
+  .page_search h1 {
+    font-size: 24px;
+  }
+}
+/* ============================
+   AJUSTE DE MÁRGENES – PÁGINA DE BÚSQUEDA
+   ============================ */
+
+/* Espacio lateral del contenedor principal */
+.page_search {
+  padding: 40px 5%;         /* 🔹 añade espacio interno a izquierda/derecha */
+  background-color: #f9faf9;
+  border-radius: 10px;      /* 🔹 bordes suaves en todo el bloque */
+}
+
+/* ============================
+   ARTÍCULO – Borde lateral derecho
+   ============================ */
+
+/* Solo el bloque principal derecho del artículo */
+.article-details .col-md-8 {
+  padding-right: 40px;               /* 🔹 Espacio interno para no pegar el texto */
+  border-radius: 0 10px 10px 0;      /* 🔹 Bordes suaves a la derecha */
+  background-color: #fff;            /* Fondo blanco coherente con el tema */
+}
+
+/* Ajuste visual para mantener proporción */
+.article-details .col-md-8 .panel,
+.article-details .col-md-8 .article-summary {
+  border-radius: 8px;
+}
+
+/* En pantallas pequeñas el borde se elimina (para no deformar el layout) */
+@media (max-width: 768px) {
+  .article-details .col-md-8 {
+    border-right: none;
+    border-radius: 0;
+  }
+}
