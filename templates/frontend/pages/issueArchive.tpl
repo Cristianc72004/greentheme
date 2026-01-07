@@ -1,4 +1,4 @@
-¿{**
+{**
  * plugins/themes/greentheme/templates/frontend/pages/issueArchive.tpl
  * Vista moderna (GreenTheme) con enfoque verde y minimalista
  * Compatible con OJS 3.4.x
