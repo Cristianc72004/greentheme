@@ -74,7 +74,7 @@ html, body, .pkp_structure_page { overflow-x: hidden; }
 
 /* Logos aliados */
 .partner-logos{ display:flex; justify-content:flex-end; gap:14px; align-items:center; flex-wrap:wrap; }
-.partner-logos img{ height:34px; width:auto; opacity:.95; max-width:100%; }
+.partner-logos img{ height:35px !important; width:auto; opacity:.95; max-width:100%; }
 
 /* --- Barra de búsqueda --- */
 .col-sm-4.text-right { position: relative; }
@@ -960,28 +960,385 @@ small, .meta, .issue-meta, footer {
   background-color: #f9faf9;
   border-radius: 10px;      /* 🔹 bordes suaves en todo el bloque */
 }
+/* =====================================================
+   REFERENCIAS – FIX DEFINITIVO
+   UNA SOLA COLUMNA + SCROLL VERTICAL
+   ===================================================== */
 
-/* ============================
-   ARTÍCULO – Borde lateral derecho
-   ============================ */
+/* 1️⃣ Mata CUALQUIER sistema de columnas */
+.article-details .article-references,
+.article-details .article-references-content,
+.article-details .article-references--sidebar .article-references-content{
+  column-count: auto !important;
+  column-width: auto !important;
+  column-gap: normal !important;
 
-/* Solo el bloque principal derecho del artículo */
-.article-details .col-md-8 {
-  padding-right: 40px;               /* 🔹 Espacio interno para no pegar el texto */
-  border-radius: 0 10px 10px 0;      /* 🔹 Bordes suaves a la derecha */
-  background-color: #fff;            /* Fondo blanco coherente con el tema */
+  -webkit-column-count: auto !important;
+  -moz-column-count: auto !important;
+
+  display: block !important;
 }
 
-/* Ajuste visual para mantener proporción */
-.article-details .col-md-8 .panel,
-.article-details .col-md-8 .article-summary {
-  border-radius: 8px;
+/* 2️⃣ Flujo normal vertical (una debajo de otra) */
+.article-details .article-references--sidebar .article-references-content{
+  max-height: 520px;        /* altura del scroll */
+  overflow-y: auto;         /* scroll vertical */
+  overflow-x: hidden;       /* nunca horizontal */
+
+  padding-right: 12px;
 }
 
-/* En pantallas pequeñas el borde se elimina (para no deformar el layout) */
-@media (max-width: 768px) {
+/* 3️⃣ Cada referencia NO se puede partir */
+.article-details .article-references--sidebar p{
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* 4️⃣ Scrollbar limpio */
+.article-details .article-references--sidebar .article-references-content::-webkit-scrollbar{
+  width: 8px;
+}
+
+.article-details .article-references--sidebar .article-references-content::-webkit-scrollbar-thumb{
+  background: #cfdad6;
+  border-radius: 6px;
+}
+
+.article-details .article-references--sidebar .article-references-content::-webkit-scrollbar-thumb:hover{
+  background: #9fbeb4;
+}
+
+/* =====================================================
+   MOBILE: sin scroll interno
+   ===================================================== */
+@media (max-width: 992px){
+  .article-details .article-references--sidebar .article-references-content{
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+/* =====================================================
+   REFERENCIAS – BLOQUE DEFINITIVO Y SIMPLE
+   ===================================================== */
+
+/* Contenedor general */
+.article-references--sidebar{
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px solid #e6eeee;
+}
+
+/* Título */
+.article-references--sidebar h2{
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+}
+
+/* Contenido: UNA SOLA COLUMNA SIEMPRE */
+.article-references--sidebar .article-references-content{
+  display: block !important;
+
+  column-count: 1 !important;
+  column-gap: 0 !important;
+
+  max-height: 520px;      /* desktop */
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding-right: 10px;
+}
+
+/* Cada referencia */
+.article-references--sidebar p{
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Scrollbar suave */
+.article-references--sidebar
+.article-references-content::-webkit-scrollbar{
+  width: 8px;
+}
+.article-references--sidebar
+.article-references-content::-webkit-scrollbar-thumb{
+  background: #cfdad6;
+  border-radius: 6px;
+}
+.article-references--sidebar
+.article-references-content::-webkit-scrollbar-thumb:hover{
+  background: #9fbeb4;
+}
+
+/* =====================================================
+   RESPONSIVE – EN MÓVIL AL FINAL Y SIN SCROLL
+   ===================================================== */
+
+@media (max-width: 768px){
+
+  /* Móvil: referencias al final */
+  .article-details > .row{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .article-details .col-md-8{
+    order: 1;
+  }
+
+  .article-details .article-sidebar{
+    order: 2;
+  }
+
+  .article-references--sidebar{
+    order: 3;
+    margin-top: 28px;
+  }
+
+  /* Móvil: sin scroll interno */
+  .article-references--sidebar .article-references-content{
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+
+/* =====================================================
+   FIX RESPONSIVE GLOBAL
+   NO ENCIMES / NO IMÁGENES GIGANTES
+   ===================================================== */
+
+/* Regla base segura */
+img,
+video,
+iframe{
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+/* =====================================================
+   LOGO / HEADER – control estricto
+   ===================================================== */
+
+.gwj-logo,
+.gwj-header img,
+.pkp_site_name img{
+  max-width: 140px;
+  height: auto;
+}
+
+@media (max-width: 768px){
+  .gwj-logo,
+  .gwj-header img,
+  .pkp_site_name img{
+    max-width: 110px;
+  }
+}
+
+/* =====================================================
+   PORTADAS / IMÁGENES GRANDES
+   ===================================================== */
+
+/* Artículo */
+.article-details .cover-image img{
+  width: 100%;
+  max-height: 260px;
+  object-fit: contain;
+}
+
+/* Issues */
+.gwj-issue-cover img,
+.gwj-issue-media img{
+  max-height: 240px;
+  object-fit: cover;
+}
+
+/* Hero */
+.gwj-hero img{
+  max-height: 420px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px){
+  .article-details .cover-image img,
+  .gwj-issue-cover img,
+  .gwj-issue-media img,
+  .gwj-hero img{
+    max-height: 200px;
+  }
+}
+
+/* =====================================================
+   FIX REAL: EVITAR ENCIMES SIN ROMPER BOOTSTRAP
+   ===================================================== */
+
+@media (max-width: 768px){
+
+  /* Solo elementos conflictivos */
+  .gwj-search-bar,
+  .gwj-hero .gwj-cta,
+  .navbar-fixed-top,
+  .navbar-fixed-bottom{
+    position: static !important;
+  }
+}
+
+/* =====================================================
+   LAYOUT LIMPIO EN MÓVIL
+   ===================================================== */
+
+@media (max-width: 768px){
+
+  .row{
+    display: block !important;
+  }
+
+  [class*="col-"]{
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+  }
+
+  .article-sidebar,
+  .col-md-8,
+  .gwj-sidebar,
+  .pkp_structure_main{
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    margin: 0 !important;
+  }
+}
+
+/* =====================================================
+   FIX CRÍTICO: QUITAR ZOOM EN MÓVIL
+   ===================================================== */
+
+@media (max-width: 768px){
+  .pkp_structure_page{
+    zoom: 1 !important;
+    transform: none !important;
+    width: 100% !important;
+  }
+}
+
+/* =====================================================
+   TEXTO LARGO (URLs, citas)
+   ===================================================== */
+
+p, li, a{
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+/* =====================================================
+   FIX TABLET (700px–1000px)
+   Evita imágenes gigantes y encimados
+   ===================================================== */
+
+@media (min-width: 700px) and (max-width: 1000px) {
+
+  /* 🔹 Reducir TODAS las imágenes grandes */
+  img,
+  video,
+  iframe {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* 🔹 Portada del artículo */
+  .article-details .cover-image img {
+    max-height: 220px;     /* ⬅ clave */
+    object-fit: contain;
+  }
+
+  /* 🔹 Imagen hero */
+  .gwj-hero img {
+    max-height: 300px;
+    object-fit: cover;
+  }
+
+  /* 🔹 Portadas de números */
+  .gwj-issue-cover img,
+  .gwj-issue-media img {
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  /* 🔹 Sidebar no empuja */
+  .article-sidebar {
+    max-width: 320px;
+    flex: 0 0 320px;
+  }
+
+  /* 🔹 Columna principal respira */
   .article-details .col-md-8 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* 🔹 Evita overlays por posición */
+  .gwj-search-bar,
+  .gwj-hero .gwj-cta {
+    position: static !important;
+  }
+}
+
+/* =====================================================
+   ARTÍCULO – BORDE Y AIRE DERECHO (TODO EL CONTENIDO)
+   Incluye título, autores, resumen, tablas, etc.
+   ===================================================== */
+
+/* Columna completa del artículo */
+.article-details .col-md-8{
+  padding-right: 32px;              /* 🔹 aire general */
+}
+
+/* Bloque interno del artículo (contenido real) */
+.article-details .article-content,
+.article-details .obj_article_details,
+.article-details .article-details,
+.article-details .article-main{
+  padding-right: 24px;
+  border-right: 1px solid #e6eeee;  /* 🔹 borde sutil */
+}
+
+/* Ajuste fino para tablet */
+@media (max-width: 1000px){
+  .article-details .col-md-8{
+    padding-right: 24px;
+  }
+
+  .article-details .article-content,
+  .article-details .obj_article_details,
+  .article-details .article-details,
+  .article-details .article-main{
+    padding-right: 18px;
+  }
+}
+
+/* En móvil: sin borde (layout limpio) */
+@media (max-width: 768px){
+  .article-details .col-md-8{
+    padding-right: 12px;
+  }
+
+  .article-details .article-content,
+  .article-details .obj_article_details,
+  .article-details .article-details,
+  .article-details .article-main{
     border-right: none;
-    border-radius: 0;
+    padding-right: 0;
   }
 }

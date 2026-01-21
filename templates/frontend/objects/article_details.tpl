@@ -23,6 +23,7 @@
 			{translate key="submission.viewingPreview" url=$submissionUrl}
 		</div>
 	{/if}
+
 	{* Notification that this is an old version *}
 	{if $currentPublication->getId() !== $publication->getId()}
 		<div class="alert alert-warning" role="alert">
@@ -99,6 +100,7 @@
 						<strong>{translate key="semicolon" label=$translatedDatePublished}</strong>
 						{$publication->getData('datePublished')|date_format:$dateFormatShort}
 					</div>
+
 					{* If this is an updated version *}
 					{if $firstPublication->getID() !== $publication->getId()}
 						<div class="list-group-item date-updated">
@@ -107,6 +109,7 @@
 							{$publication->getData('datePublished')|date_format:$dateFormatShort}
 						</div>
 					{/if}
+
 					{* Versions *}
 					{if count($article->getPublishedPublications()) > 1}
 						<div class="list-group-item versions">
@@ -156,6 +159,22 @@
 					</div>
 				{/if}
 			</div>
+
+			{* ✅ MOVIDO AQUÍ: REFERENCES PARA RELLENAR EL VACÍO DEL LADO IZQUIERDO *}
+			{if $parsedCitations || $publication->getData('citationsRaw')}
+				<div class="article-references article-references--sidebar">
+					<h2>{translate key="submission.citations"}</h2>
+					<div class="article-references-content">
+						{if $parsedCitations}
+							{foreach from=$parsedCitations item="parsedCitation"}
+								<p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</p>
+							{/foreach}
+						{else}
+							{$publication->getData('citationsRaw')|nl2br}
+						{/if}
+					</div>
+				</div>
+			{/if}
 
 		</section><!-- .article-sidebar -->
 
@@ -357,23 +376,7 @@
 
 				{call_hook name="Templates::Article::Details"}
 
-				{* References *}
-				{if $parsedCitations || $publication->getData('citationsRaw')}
-					<div class="article-references">
-						<h2>{translate key="submission.citations"}</h2>
-						<div class="article-references-content">
-							{if $parsedCitations}
-								{foreach from=$parsedCitations item="parsedCitation"}
-									<p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</p>
-								{/foreach}
-							{else}
-								{$publication->getData('citationsRaw')|nl2br}
-							{/if}
-						</div>
-					</div>
-				{/if}
-
-			</section><!-- .article-details -->
+			</section><!-- .article-more-details -->
 		</div><!-- .col-md-8 -->
 	</div><!-- .row -->
 
