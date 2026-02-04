@@ -79,7 +79,7 @@
 			<div class="gwn-acc-content">
 				<ul>
 					<li><a href="{$baseUrl}/plugins/themes/greentheme/Doc/plantilla-articulo.docx" target="_blank">📘 Plantilla del artículo</a></li>
-					<li><a href="{$baseUrl}/plugins/themes/greentheme/Doc/guia_citaciones.pdf" target="_blank">📗 Guía de citaciones (APA 7ª edición)</a></li>
+					<li><a href="{$baseUrl}/plugins/themes/greentheme/Doc/Manual_Usuario.pdf" target="_blank">📗 Manual de usuario para registro y envío </a></li>
 					<li><a href="{$baseUrl}/plugins/themes/greentheme/Doc/guia_autores.pdf" target="_blank">📗 Guía completa para autores/as (PDF)</a></li>
 				</ul>
 			</div>
