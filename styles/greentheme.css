@@ -25,47 +25,7 @@ html, body, .pkp_structure_page { overflow-x: hidden; }
 /* Título como imagen */
 .gwj-title-img{ display:inline-block; height:42px; width:auto; vertical-align:middle; margin:0; }
 
-/* ============================
-   RESPONSIVIDAD – LOGO Y TÍTULO SOLO EN MÓVILES
-   ============================ */
 
-@media (max-width: 768px) {
-  .gwj-header {
-    text-align: center;
-  }
-
-  .gwj-brand {
-    display: flex;
-    flex-direction: column;   /* 🔹 logo arriba, título abajo */
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    width: 100%;
-  }
-
-  .gwj-logo {
-    height: 56px;             /* 🔹 un poco más pequeño solo en móvil */
-    width: auto;
-  }
-
-  .gwj-title-img {
-    height: 32px;             /* 🔹 mantiene proporción en pantallas pequeñas */
-    width: auto;
-  }
-
-  /* ISSN y logos aliados se centran */
-  .gwj-issn-row {
-    margin-left: 0;
-    text-align: center;
-  }
-
-  .partner-logos {
-    justify-content: center;  /* 🔹 centra los logos aliados */
-    flex-wrap: wrap;
-    margin-top: 8px;
-    gap: 10px;
-  }
-}
 
 /* ISSN */
 .gwj-issn-row{ margin-top:4px; margin-left:76px; line-height:1.1; }
@@ -225,17 +185,7 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:14px; padding-bot
 .mt-20{ margin-top:20px; }
 .mb-20{ margin-bottom:20px; }
 
-/* Responsive general */
-@media (max-width: 991px){
-  .gwj-logo{ height:56px; }
-  .gwj-title-img{ height:34px; }
-  .gwj-issn-row{ margin-left:68px; }
-  .partner-logos{ justify-content:flex-start; margin-top:8px; }
-  .gwj-hero{ max-width:860px; }
-  .gwj-sidebar{ border-right:none; padding-right:12px; }
-  .pkp_structure_main{ padding-left:18px; }
-  .gwj-sidemenu{ margin-left:12px; }
-}
+
 @media (max-width: 767px){
   .gwj-logo{ height:44px; }
   .gwj-title-img{ height:28px; }
@@ -1196,31 +1146,7 @@ iframe{
   }
 }
 
-/* =====================================================
-   LAYOUT LIMPIO EN MÓVIL
-   ===================================================== */
 
-@media (max-width: 768px){
-
-  .row{
-    display: block !important;
-  }
-
-  [class*="col-"]{
-    width: 100% !important;
-    max-width: 100% !important;
-    float: none !important;
-  }
-
-  .article-sidebar,
-  .col-md-8,
-  .gwj-sidebar,
-  .pkp_structure_main{
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-    margin: 0 !important;
-  }
-}
 
 /* =====================================================
    FIX CRÍTICO: QUITAR ZOOM EN MÓVIL
@@ -1242,58 +1168,7 @@ p, li, a{
   word-break: break-word;
   overflow-wrap: anywhere;
 }
-/* =====================================================
-   FIX TABLET (700px–1000px)
-   Evita imágenes gigantes y encimados
-   ===================================================== */
 
-@media (min-width: 700px) and (max-width: 1000px) {
-
-  /* 🔹 Reducir TODAS las imágenes grandes */
-  img,
-  video,
-  iframe {
-    max-width: 100% !important;
-    height: auto !important;
-  }
-
-  /* 🔹 Portada del artículo */
-  .article-details .cover-image img {
-    max-height: 220px;     /* ⬅ clave */
-    object-fit: contain;
-  }
-
-  /* 🔹 Imagen hero */
-  .gwj-hero img {
-    max-height: 300px;
-    object-fit: cover;
-  }
-
-  /* 🔹 Portadas de números */
-  .gwj-issue-cover img,
-  .gwj-issue-media img {
-    max-height: 200px;
-    object-fit: cover;
-  }
-
-  /* 🔹 Sidebar no empuja */
-  .article-sidebar {
-    max-width: 320px;
-    flex: 0 0 320px;
-  }
-
-  /* 🔹 Columna principal respira */
-  .article-details .col-md-8 {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  /* 🔹 Evita overlays por posición */
-  .gwj-search-bar,
-  .gwj-hero .gwj-cta {
-    position: static !important;
-  }
-}
 
 /* =====================================================
    ARTÍCULO – BORDE Y AIRE DERECHO (TODO EL CONTENIDO)
@@ -1812,4 +1687,282 @@ html,
 .pkp_structure_content {
   max-width: 100%;
   overflow-x: hidden;
+}
+
+/* =====================================================
+   FIX ADICIONAL – HEADER RESPONSIVE COMPLETO
+   Corrige encimado de logos y recorte del search
+   ===================================================== */
+
+/* ===== ESTRUCTURA DEL HEADER ===== */
+.gwj-header .container {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.gwj-header .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  position: relative;
+}
+
+.gwj-header [class*="col-"] {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* ===== FIX BRAND Y LOGOS ===== */
+.gwj-brand {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Desktop: brand horizontal */
+@media (min-width: 769px) {
+  .gwj-brand {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  /* Logos a la derecha, NO encimados */
+  .partner-logos {
+    justify-content: flex-end !important;
+    gap: 14px;
+    margin-top: 0 !important;
+  }
+  
+  .partner-logos img {
+    height: 35px !important;
+    width: auto;
+    max-width: none !important;
+  }
+  
+  .gwj-issn-row {
+    margin-left: 76px !important;
+  }
+  
+  /* Título de revista ajustable */
+  .gwj-title-img {
+    max-width: 400px;
+  }
+}
+
+/* ===== TABLET (600px - 992px) ===== */
+@media (min-width: 600px) and (max-width: 992px) {
+  /* Reducir tamaño de logos para que no encimen */
+  .partner-logos {
+    justify-content: flex-end !important;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  
+  .partner-logos img {
+    height: 28px !important;
+    width: auto;
+  }
+  
+  /* Título más pequeño */
+  .gwj-title-img {
+    height: 36px !important;
+    max-width: 320px;
+  }
+  
+  .gwj-logo {
+    height: 52px !important;
+  }
+  
+  .gwj-issn-row {
+    margin-left: 0 !important;
+    text-align: center;
+  }
+  
+  /* Search bar más pequeño */
+  .gwj-search-bar {
+    width: 220px !important;
+    top: 80px !important;
+  }
+}
+
+/* ===== MÓVIL (≤ 599px) ===== */
+@media (max-width: 599px) {
+  /* Header centrado */
+  .gwj-header {
+    text-align: center;
+  }
+  
+  /* Brand vertical (logo arriba, título abajo) */
+  .gwj-brand {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+  }
+  
+  /* Logo pequeño */
+  .gwj-logo {
+    height: 48px !important;
+    width: auto;
+  }
+  
+  /* Título pequeño y centrado */
+  .gwj-title-img {
+    height: 28px !important;
+    max-width: 280px;
+    width: auto;
+  }
+  
+  /* ISSN centrado */
+  .gwj-issn-row {
+    margin-left: 0 !important;
+    text-align: center;
+  }
+  
+  /* Logos aliados centrados y pequeños */
+  .partner-logos {
+    justify-content: center !important;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .partner-logos img {
+    height: 24px !important;
+    width: auto;
+    max-width: 70px;
+  }
+  
+  /* Search bar centrado y responsive */
+  .gwj-search-bar {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100%;
+    margin: 10px auto 0;
+    padding: 0 10px;
+  }
+  
+  .gwj-search-bar form {
+    width: 100%;
+    justify-content: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .gwj-search-bar .form-control {
+    flex: 1;
+    min-width: 0;
+    font-size: 14px;
+  }
+  
+  .gwj-search-bar button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+/* ===== MÓVIL MUY PEQUEÑO (≤ 400px) ===== */
+@media (max-width: 400px) {
+  .gwj-logo {
+    height: 42px !important;
+  }
+  
+  .gwj-title-img {
+    height: 24px !important;
+    max-width: 240px;
+  }
+  
+  .partner-logos img {
+    height: 20px !important;
+    max-width: 60px;
+  }
+  
+  .gwj-search-bar form {
+    max-width: 100%;
+  }
+  
+  .gwj-search-bar .form-control {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  
+  .gwj-search-bar button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* ===== FIX COLUMNAS DEL HEADER ===== */
+@media (max-width: 992px) {
+  /* Evitar que las columnas empujen el contenido */
+  .gwj-header [class*="col-"] {
+    position: relative;
+    z-index: auto;
+  }
+  
+  /* Logos NO en posición absoluta */
+  .partner-logos {
+    position: relative;
+    display: flex;
+  }
+}
+
+/* ===== NAVEGACIÓN MÓVIL ===== */
+@media (max-width: 599px) {
+  #headerNavigationContainer {
+    padding: 0 10px;
+  }
+  
+  #navigationUser {
+    font-size: 13px;
+  }
+  
+  #navigationUser li a {
+    padding: 8px 10px;
+  }
+}
+
+/* ===== FIX ESPECÍFICO PARA EL SEARCH BAR ===== */
+.col-sm-4.text-right {
+  position: relative;
+}
+
+@media (min-width: 993px) {
+  .gwj-search-bar {
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    width: 280px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .gwj-search-bar {
+    position: absolute;
+    top: 80px;
+    right: 15px;
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gwj-search-bar {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    width: 100% !important;
+  }
+}
+
+/* ===== EVITAR OVERFLOW HORIZONTAL ===== */
+.gwj-header {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.gwj-header * {
+  max-width: 100%;
 }
