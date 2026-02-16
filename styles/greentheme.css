@@ -5,7 +5,6 @@
 /* Resets y seguridad anti-scroll */
 html { box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
-html, body, .pkp_structure_page { overflow-x: hidden; }
 .pkp_structure_page img { max-width: 100%; height: auto; display: block; }
 
 /* Fila de user menu sin márgenes negativos */
@@ -1674,20 +1673,8 @@ img {
 }
 
 /* ===== FIX PARA SCROLL HORIZONTAL ===== */
-body,
-html,
-.pkp_structure_page {
-  overflow-x: hidden !important;
-  max-width: 100vw;
-}
 
 /* Contenedores que no deben salirse */
-.container,
-.container-fluid,
-.pkp_structure_content {
-  max-width: 100%;
-  overflow-x: hidden;
-}
 
 /* =====================================================
    FIX ADICIONAL – HEADER RESPONSIVE COMPLETO
@@ -1695,10 +1682,7 @@ html,
    ===================================================== */
 
 /* ===== ESTRUCTURA DEL HEADER ===== */
-.gwj-header .container {
-  overflow-x: hidden;
-  max-width: 100%;
-}
+
 
 .gwj-header .row {
   margin-left: 0 !important;
@@ -1750,7 +1734,7 @@ html,
 }
 
 /* ===== TABLET (600px - 992px) ===== */
-@media (min-width: 600px) and (max-width: 992px) {
+@media (min-width: 600px) and (max-width: 1300px) {
   /* Reducir tamaño de logos para que no encimen */
   .partner-logos {
     justify-content: flex-end !important;
@@ -1781,7 +1765,7 @@ html,
   /* Search bar más pequeño */
   .gwj-search-bar {
     width: 220px !important;
-    top: 80px !important;
+    top: 60px !important;
   }
 }
 
@@ -1925,6 +1909,8 @@ html,
   }
 }
 
+
+
 /* ===== FIX ESPECÍFICO PARA EL SEARCH BAR ===== */
 .col-sm-4.text-right {
   position: relative;
@@ -1957,12 +1943,45 @@ html,
   }
 }
 
+
+
 /* ===== EVITAR OVERFLOW HORIZONTAL ===== */
 .gwj-header {
   overflow-x: hidden;
   max-width: 100%;
 }
 
-.gwj-header * {
-  max-width: 100%;
+
+/* =========================================
+   FIX DROPDOWN QUEDE POR ENCIMA
+   ========================================= */
+
+/* Asegura que el header pueda desbordar */
+.gwj-header,
+
+header.navbar,
+#headerNavigationContainer,
+.pkp_structure_content {
+  overflow: visible !important;
+}
+
+/* Asegura stacking correcto */
+.navbar,
+.navbar-nav,
+.dropdown,
+.dropdown-menu {
+  position: relative;
+  z-index: 9999;
+}
+
+/* El dropdown debe flotar */
+.dropdown-menu {
+  position: absolute !important;
+  z-index: 10000 !important;
+}
+
+/* Evita que el zoom cree contexto bloqueante */
+.pkp_structure_page {
+  position: relative;
+  z-index: 1;
 }
