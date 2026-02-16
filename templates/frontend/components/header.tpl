@@ -1,7 +1,7 @@
 {**
  * plugins/themes/greentheme/templates/frontend/components/header.tpl
  * Common frontend site header (GreenTheme con sidebar global)
- *}.
+ *}
 
 {assign var="showingLogo" value=true}
 {if $displayPageHeaderTitle && !$displayPageHeaderLogo && is_string($displayPageHeaderTitle)}
@@ -96,5 +96,4 @@
 				</aside>
 
 				{* Main más ancho *}
-				<main id="main-content" class="pkp_structure_main col-xs-12 col-sm-10 gwj-main" role="main">
-
+				<main id="main-content" class="pkp_structure_main col-xs-12 col-sm-10" role="main">
