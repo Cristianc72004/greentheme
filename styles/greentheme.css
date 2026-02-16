@@ -1342,3 +1342,474 @@ p, li, a{
     padding-right: 0;
   }
 }
+
+/* ============================
+   ISSUE TOC - TARJETAS DE ARTÍCULOS CON IMÁGENES
+   ============================ */
+
+/* Grid de artículos */
+.gwj-article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Tarjeta individual de artículo */
+.gwj-article-card {
+  background: #fff;
+  border: 1px solid #e6eeee;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.gwj-article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(47, 154, 143, 0.25);
+  border-color: #2f9a8f;
+}
+
+/* Imagen de portada del artículo */
+.gwj-article-cover {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #f7fbfa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gwj-article-cover a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gwj-article-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gwj-article-card:hover .gwj-article-thumb {
+  transform: scale(1.05);
+}
+
+/* Contenido del artículo */
+.gwj-article-content {
+  padding: 16px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Título del artículo */
+.gwj-article-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.gwj-article-title a {
+  color: #1e5631;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.gwj-article-title a:hover {
+  color: #2f9a8f;
+}
+
+/* Subtítulo */
+.gwj-article-subtitle {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #4a5b63;
+  font-style: italic;
+}
+
+/* Autores */
+.gwj-article-authors {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #2c3e50;
+  line-height: 1.5;
+}
+
+.gwj-article-authors .author {
+  font-weight: 500;
+}
+
+/* Páginas */
+.gwj-article-pages {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: #60717a;
+}
+
+/* Botones de descarga */
+.gwj-article-galleys {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #e6eeee;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.gwj-article-galleys .btn {
+  font-size: 13px;
+  padding: 6px 14px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+  .gwj-article-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  
+  .gwj-article-cover {
+    height: 200px;
+  }
+}
+
+@media (max-width: 767px) {
+  .gwj-article-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  
+  .gwj-article-cover {
+    height: 180px;
+  }
+}
+
+/* =====================================================
+   FIX RESPONSIVIDAD DEFINITIVO
+   Evita encimados y redistribuye correctamente
+   ===================================================== */
+
+/* ===== DESKTOP Y TABLET (> 768px) ===== */
+@media (min-width: 769px) {
+  /* Sidebar fijo con ancho controlado */
+  .gwj-sidebar {
+    position: relative;
+    max-width: 210px;
+    flex: 0 0 210px;
+    padding-right: 16px;
+    border-right: 1px solid #e6eeee;
+  }
+
+  /* Main respira correctamente */
+  .pkp_structure_main {
+    flex: 1;
+    padding-left: 24px;
+    max-width: calc(100% - 210px);
+  }
+
+  /* Menú lateral dentro del sidebar */
+  .gwj-sidemenu {
+    width: 100%;
+    margin-left: 0;
+    position: sticky;
+    top: 20px;
+  }
+}
+
+/* ===== TABLET PEQUEÑA (600px - 768px) ===== */
+@media (min-width: 600px) and (max-width: 768px) {
+  /* Sidebar se reduce */
+  .gwj-sidebar {
+    max-width: 180px;
+    flex: 0 0 180px;
+    padding-right: 12px;
+  }
+
+  /* Menú lateral más estrecho */
+  .gwj-sidemenu {
+    width: 100%;
+    margin-left: 0;
+    font-size: 14px;
+  }
+
+  .gwj-sidemenu li a {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  /* Main ajustado */
+  .pkp_structure_main {
+    padding-left: 18px;
+    max-width: calc(100% - 180px);
+  }
+
+  /* Grid de artículos 1 columna */
+  .gwj-article-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Issue grid 1 columna */
+  .gwj-issue-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== MÓVIL (≤ 599px) ===== */
+@media (max-width: 599px) {
+  /* Forzar layout vertical */
+  .pkp_structure_content .row {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Sidebar arriba, ancho completo */
+  .gwj-sidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    padding: 0 !important;
+    border-right: none !important;
+    margin-bottom: 20px;
+  }
+
+  /* Menú lateral horizontal en móvil */
+  .gwj-sidemenu {
+    width: 100%;
+    margin: 0 0 15px 0;
+  }
+
+  .gwj-sidemenu ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .gwj-sidemenu li {
+    flex: 1;
+    min-width: calc(50% - 4px);
+  }
+
+  .gwj-sidemenu li a {
+    padding: 10px 8px;
+    font-size: 13px;
+    text-align: center;
+    border: 1px solid #e6eeee;
+    border-radius: 6px;
+    border-bottom: 1px solid #e6eeee !important;
+  }
+
+  /* Dropdowns en móvil */
+  .gwj-sidemenu .dropdown-menu {
+    position: relative;
+    width: 100%;
+    display: none;
+    box-shadow: none;
+    border: 1px solid #e6eeee;
+    margin-top: 4px;
+  }
+
+  .gwj-sidemenu .dropdown.open .dropdown-menu {
+    display: block;
+  }
+
+  /* Main ocupa todo el ancho */
+  .pkp_structure_main {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    padding: 0 10px !important;
+  }
+
+  /* Breadcrumbs compactos */
+  .cmp_breadcrumbs {
+    font-size: 12px;
+    margin: 8px 0 12px;
+  }
+
+  .cmp_breadcrumbs .breadcrumb > li + li:before {
+    padding: 0 4px;
+  }
+
+  /* Grids 1 columna */
+  .gwj-article-grid,
+  .gwj-issue-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  /* Tarjetas de artículos más compactas */
+  .gwj-article-cover {
+    height: 160px !important;
+  }
+
+  .gwj-article-content {
+    padding: 12px !important;
+  }
+
+  .gwj-article-title {
+    font-size: 16px !important;
+  }
+
+  /* Issue cards más pequeñas */
+  .gwj-issue-media img {
+    height: 160px !important;
+  }
+
+  /* Hero más pequeño */
+  .gwj-hero {
+    margin: 10px 0 20px;
+  }
+
+  .gwj-hero img {
+    height: 200px !important;
+  }
+
+  /* Cabecera de issue compacta */
+  .gwj-issue-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .gwj-issue-cover img {
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto 12px;
+  }
+
+  .gwj-issue-title {
+    font-size: 20px !important;
+  }
+
+  /* Búsqueda en header */
+  .gwj-search-bar {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    margin: 12px 0;
+  }
+
+  .gwj-search-bar form {
+    justify-content: center;
+  }
+
+  /* Footer compacto */
+  .gwj-footer {
+    padding: 15px 10px;
+    text-align: center;
+  }
+
+  .gwj-footer .footer-info,
+  .gwj-footer .footer-social {
+    text-align: center;
+  }
+
+  .gwj-footer .footer-social .social-icon {
+    margin: 0 4px;
+  }
+}
+
+/* ===== MÓVIL MUY PEQUEÑO (≤ 400px) ===== */
+@media (max-width: 400px) {
+  /* Header más compacto */
+  .gwj-logo {
+    height: 40px !important;
+  }
+
+  .gwj-title-img {
+    height: 24px !important;
+  }
+
+  /* Menú lateral a columna única */
+  .gwj-sidemenu li {
+    min-width: 100%;
+  }
+
+  /* Botones más pequeños */
+  .btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  /* Texto más pequeño */
+  body, p {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+}
+
+/* ===== FIX ESPECÍFICO PARA ENCIMADOS ===== */
+
+/* Evita que el menú lateral se encime con el contenido */
+.pkp_structure_content {
+  overflow: visible !important;
+  position: relative;
+}
+
+.pkp_structure_content > .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Z-index para dropdowns */
+.gwj-sidemenu .dropdown-menu {
+  z-index: 1000;
+}
+
+/* Evita que imágenes rompan el layout */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Tablas responsive */
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .gwj-table {
+    font-size: 13px;
+  }
+}
+
+/* ===== FIX PARA SCROLL HORIZONTAL ===== */
+body,
+html,
+.pkp_structure_page {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+}
+
+/* Contenedores que no deben salirse */
+.container,
+.container-fluid,
+.pkp_structure_content {
+  max-width: 100%;
+  overflow-x: hidden;
+}
