@@ -1985,3 +1985,13 @@ header.navbar,
   position: relative;
   z-index: 1;
 }
+
+/* ===== Estadísticas - título limpio ===== */
+.downloads-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e5631;
+  margin: 20px 0 12px;
+  border-left: 4px solid #2f9a8f;
+  padding-left: 8px;
+}

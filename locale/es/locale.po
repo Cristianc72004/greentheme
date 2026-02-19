@@ -109,7 +109,7 @@ msgid "plugins.themes.greentheme.displayStats.monthInitials"
 msgstr "Ene Feb Mar Abr May Jun Jul Ago Sep Oct Nov Dic"
 
 msgid "plugins.themes.greentheme.displayStats.downloads"
-msgstr "Descargas"
+msgstr "Estadisticas de Descargas"
 
 msgid "plugins.themes.greentheme.displayStats.noStats"
 msgstr "Aún no hay datos de descargas disponibles."
