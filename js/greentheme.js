@@ -60,4 +60,48 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", moveReferencesResponsive);
 });
 
+/* =====================================================
+   MENÚ HAMBURGUESA – mostrar/ocultar en móvil
+   ===================================================== */
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("gwj-hamburger-btn");
+  const nav = document.getElementById("gwj-nav-collapse");
 
+  if (!btn || !nav) return;
+
+  btn.addEventListener("click", function () {
+    var isOpen = nav.classList.toggle("gwj-open");
+
+    // Actualiza atributo accesibilidad
+    btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+    // Cambia ícono: ☰ abierto → ✕ cerrado
+    btn.querySelector(".gwj-hamburger-icon").textContent = isOpen ? "✕" : "☰";
+  });
+
+  // Cierra el menú si se hace clic fuera de él (útil en móvil)
+  document.addEventListener("click", function (e) {
+    if (!btn.contains(e.target) && !nav.contains(e.target)) {
+      if (nav.classList.contains("gwj-open")) {
+        nav.classList.remove("gwj-open");
+        btn.setAttribute("aria-expanded", "false");
+        btn.querySelector(".gwj-hamburger-icon").textContent = "☰";
+      }
+    }
+  });
+});
+
+/* =====================================================
+   MENÚ ACTIVO – resalta el ítem de la página actual
+   ===================================================== */
+document.addEventListener("DOMContentLoaded", function () {
+  var currentUrl = window.location.href.split('?')[0]; // ignora parámetros
+  var menuLinks = document.querySelectorAll(".gwj-sidemenu a");
+
+  menuLinks.forEach(function (link) {
+    var linkUrl = link.href.split('?')[0];
+    if (linkUrl === currentUrl) {
+      link.parentElement.classList.add("active");
+    }
+  });
+});

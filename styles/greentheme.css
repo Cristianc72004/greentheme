@@ -66,24 +66,91 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:14px; padding-bot
 .gwj-hero .gwj-cta{ position:absolute; right:24px; bottom:24px; }
 .gwj-hero .gwj-cta .btn{ padding:12px 18px; font-size:16px; background:rgba(255,255,255,.9); border-color:rgba(0,0,0,.1); }
 
-/* Menú lateral */
-.gwj-sidemenu{
-  background:#fff; border:1px solid #d9e2e1; border-radius:3px; overflow:visible; position:relative;
-  width:210px; margin-top:10px; margin-left:20px;
+/* ============================
+   MENÚ LATERAL – versión mejorada POR ALEX
+   ============================ */
+
+.gwj-sidemenu {
+  background: #fff;
+  border: 1px solid #d9e2e1;
+  border-radius: 3px;
+  overflow: visible;
+  position: relative;
+  width: 210px;
+  margin-top: 10px;
+  margin-left: 20px;
 }
-.gwj-sidemenu ul{ list-style:none; margin:0; padding:0; }
-.gwj-sidemenu li{ position:relative; }
-.gwj-sidemenu li a{ display:block; padding:10px 12px; color:#2c3e50; text-decoration:none; border-bottom:1px solid #e6eeee; }
-.gwj-sidemenu li:last-child > a{ border-bottom:0; }
-.gwj-sidemenu li > a:hover{ background:#e8f4f2; }
-.gwj-sidemenu li.active > a, .gwj-sidemenu li > a.active{ background:#2f9a8f; color:#fff; }
-.gwj-sidemenu li.active > a:hover{ background:#27867c; color:#fff; }
-.gwj-sidemenu .section-title{ font-weight:600; padding:10px 12px; color:#1b4d2a; border-bottom:1px solid #e6eeee; background:#f7fbfa; }
-.gwj-sidemenu .dropdown-toggle .caret{ float:right; margin-top:8px; }
-.gwj-sidemenu .dropdown-menu{ left:0; right:0; width:100%; margin:0; border-radius:0 0 3px 3px; border-color:#e6eeee; box-shadow:0 2px 6px rgba(0,0,0,.08); }
-.gwj-sidemenu .dropdown-menu > li > a{ padding:9px 12px; color:#2c3e50; }
-.gwj-sidemenu .dropdown-menu > li > a:hover{ background:#e8f4f2; }
-.gwj-sidemenu .dropdown.open > a, .gwj-sidemenu .dropdown.open > a:hover{ background:#2f9a8f; color:#fff; border-bottom-color:transparent; }
+
+.gwj-sidemenu ul { list-style: none; margin: 0; padding: 0; }
+.gwj-sidemenu li { position: relative; }
+
+/* Link base */
+.gwj-sidemenu li a {
+  display: block;
+  padding: 10px 12px 10px 16px;
+  color: #2c3e50;
+  text-decoration: none;
+  border-bottom: 1px solid #e6eeee;
+  border-left: 3px solid transparent;        /* reserva espacio */
+  transition: background 0.2s ease, border-left-color 0.2s ease, color 0.2s ease;
+}
+
+.gwj-sidemenu li:last-child > a { border-bottom: 0; }
+
+/* HOVER – borde verde claro */
+.gwj-sidemenu li > a:hover {
+  background: #e8f4f2;
+  border-left-color: #2f9a8f;
+  color: #1e5631;
+}
+
+/* ACTIVO – fondo verde + borde oscuro + negrita */
+.gwj-sidemenu li.active > a,
+.gwj-sidemenu li > a.active {
+  background: #e0f5f2;
+  color: #1e5631;
+  font-weight: 700;
+  border-left-color: #1e5631;
+}
+
+.gwj-sidemenu li.active > a:hover {
+  background: #c8ede9;
+}
+
+/* Títulos de sección */
+.gwj-sidemenu .section-title {
+  font-weight: 600;
+  padding: 10px 12px;
+  color: #1b4d2a;
+  border-bottom: 1px solid #e6eeee;
+  background: #f7fbfa;
+}
+
+/* Dropdowns */
+.gwj-sidemenu .dropdown-toggle .caret { float: right; margin-top: 8px; }
+.gwj-sidemenu .dropdown-menu {
+  left: 0; right: 0; width: 100%; margin: 0;
+  border-radius: 0 0 3px 3px;
+  border-color: #e6eeee;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+.gwj-sidemenu .dropdown-menu > li > a {
+  padding: 9px 12px;
+  color: #2c3e50;
+  border-left: 3px solid transparent;
+  transition: background 0.2s ease, border-left-color 0.2s ease;
+}
+.gwj-sidemenu .dropdown-menu > li > a:hover {
+  background: #e8f4f2;
+  border-left-color: #2f9a8f;
+}
+.gwj-sidemenu .dropdown.open > a,
+.gwj-sidemenu .dropdown.open > a:hover {
+  background: #2f9a8f;
+  color: #fff;
+  border-bottom-color: transparent;
+}
+
 
 /* Menú vertical en header */
 .gwj-primary-nav .gwj-vertical-menu.nav > li{ float:none; }
@@ -1994,4 +2061,98 @@ header.navbar,
   margin: 20px 0 12px;
   border-left: 4px solid #2f9a8f;
   padding-left: 8px;
+}
+
+/* ============================
+   MENÚ HAMBURGUESA – móvil POR ALEE
+   ============================ */
+
+.gwj-hamburger {
+  display: none;
+  background: none;
+  border: 1px solid #d9e2e1;
+  border-radius: 4px;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: #1e5631;
+  font-size: 20px;
+  line-height: 1;
+  margin: 10px 0 6px 0;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.2s ease;
+}
+
+.gwj-hamburger:hover { background: #e8f4f2; }
+.gwj-hamburger-icon { margin-right: 8px; font-size: 18px; }
+.gwj-hamburger-label { font-size: 14px; font-weight: 600; }
+
+.gwj-sidemenu-collapse {
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+}
+
+@media (max-width: 599px) {
+  .gwj-hamburger {
+    display: flex;
+    align-items: center;
+  }
+
+  .gwj-sidebar {
+    position: relative;
+    z-index: 1000;
+  }
+
+  .gwj-sidemenu {
+    width: 100%;
+    margin: 0 0 15px 0;
+    position: relative;
+  }
+
+  /* Flotante – no empuja contenido */
+  .gwj-sidemenu-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.50);  /* ← semitransparente */
+    backdrop-filter: blur(4px);              /* ← efecto cristal */
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(217, 226, 225, 0.7);
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+  }
+
+  .gwj-sidemenu-collapse:not(.gwj-open) {
+    display: none;
+  }
+
+  .gwj-sidemenu-collapse.gwj-open {
+    display: block;
+    max-height: none;
+    opacity: 1;
+  }
+
+  /* Links verticales limpios */
+  .gwj-sidemenu ul {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .gwj-sidemenu li {
+    min-width: 100% !important;
+    flex: none !important;
+  }
+
+  .gwj-sidemenu li a {
+    text-align: left !important;
+    border-radius: 0 !important;
+    border: none !important;
+    border-left: 3px solid transparent !important;
+    border-bottom: 1px solid #e6eeee !important;
+    padding: 11px 14px !important;
+  }
 }

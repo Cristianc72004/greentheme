@@ -89,10 +89,23 @@
 			<div class="row">
 
 				{* Sidebar más angosto *}
-				<aside id="sidebar" class="gwj-sidebar col-xs-12 col-sm-2" role="navigation" aria-label="{translate|escape key="plugins.themes.greentheme.accessible_menu.main_navigation"}">
-					<nav class="gwj-sidemenu">
-						{load_menu name="primary" id="main-navigation" ulClass="nav nav-pills nav-stacked"}
-					</nav>
+				<aside id="sidebar" class="gwj-sidebar col-xs-12 col-sm-2" role="navigation"
+       					aria-label="{translate|escape key="plugins.themes.greentheme.accessible_menu.main_navigation"}">
+  					<nav class="gwj-sidemenu">
+
+    					{* Botón hamburguesa – visible solo en móvil vía CSS *}
+    					<button class="gwj-hamburger" id="gwj-hamburger-btn"
+            					aria-expanded="false" aria-controls="gwj-nav-collapse">
+      						<span class="gwj-hamburger-icon">☰</span>
+      						<span class="gwj-hamburger-label">Menú</span>
+    					</button>
+
+    					{* Contenedor colapsable *}
+    					<div class="gwj-sidemenu-collapse" id="gwj-nav-collapse">
+   						   {load_menu name="primary" id="main-navigation" ulClass="nav nav-pills nav-stacked"}
+    					</div>
+
+  					</nav>
 				</aside>
 
 				{* Main más ancho *}
