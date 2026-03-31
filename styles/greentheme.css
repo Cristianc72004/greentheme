@@ -195,52 +195,68 @@ header.navbar.navbar-default .navbar-nav > li > a{ padding-top:14px; padding-bot
 }
 
 /* ===== Página Contacto: mapa + datos ===== */
-.page_contact .gwj-map-card{
-  background:#fff;
-  border:1px solid #e6eeee;
-  border-radius:8px;
-  padding:10px;
-  margin:6px auto 18px;
+.page_contact .gwj-map-card {
+  background: #fff;
+  border: 1px solid #e6eeee;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 6px auto 18px;
   max-width: 860px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
 }
-.page_contact .gwj-map-ratio{
+
+/* Truco ratio 16:9 — altura proporcional al ancho, nunca se corta */
+.page_contact .gwj-map-ratio {
   position: relative;
   width: 100%;
-  height: 280px;
+  padding-bottom: 45%;
+  height: 0;
   border-radius: 6px;
   overflow: hidden;
 }
-.page_contact .gwj-map-ratio iframe{
-  position:absolute; inset:0;
-  width:100%; height:100%; border:0;
-}
-.page_contact .gwj-map-actions{
-  display:flex; justify-content:flex-end;
-  margin-top:10px;
+
+.page_contact .gwj-map-ratio iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 
-.page_contact .gwj-contact-grid{
-  display:grid;
+.page_contact .gwj-map-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.page_contact .gwj-contact-grid {
+  display: grid;
   grid-template-columns: 1fr 1fr;
-  gap:16px;
+  gap: 16px;
 }
-.page_contact .gwj-contact-box{
-  background:#fff;
-  border:1px solid #e6eeee;
-  border-radius:6px;
-  padding:14px;
-}
-.page_contact .gwj-contact-title{ margin:0 0 8px; font-weight:700; }
-.page_contact .gwj-address{ white-space:pre-wrap; }
-.page_contact .gwj-logos-row{ display:flex; align-items:center; gap:16px; margin-bottom:12px; }
-.page_contact .gwj-logo-small{ height:40px; width:auto; opacity:.95; }
 
-@media (max-width: 991px){
-  .page_contact .gwj-map-card{ max-width: 100%; }
+.page_contact .gwj-contact-box {
+  background: #fff;
+  border: 1px solid #e6eeee;
+  border-radius: 6px;
+  padding: 14px;
 }
-@media (max-width: 767px){
-  .page_contact .gwj-contact-grid{ grid-template-columns: 1fr; }
+
+.page_contact .gwj-contact-title { margin: 0 0 8px; font-weight: 700; }
+.page_contact .gwj-address { white-space: pre-wrap; }
+.page_contact .gwj-logos-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.page_contact .gwj-logo-small { height: 40px; width: auto; opacity: .95; }
+
+@media (max-width: 991px) {
+  .page_contact .gwj-map-card { max-width: 100%; }
+  .page_contact .gwj-map-ratio { padding-bottom: 56%; }
+}
+
+@media (max-width: 767px) {
+  .page_contact .gwj-contact-grid { grid-template-columns: 1fr; }
+  .page_contact .gwj-map-ratio { padding-bottom: 65%; }
 }
 
 /* Ocultar marca PKP */
@@ -1138,10 +1154,15 @@ small, .meta, .issue-meta, footer {
 
 /* Regla base segura */
 img,
-video,
-iframe{
+video {
   max-width: 100% !important;
   height: auto !important;
+  display: block;
+}
+
+/* iframe NO debe tener height: auto */
+iframe {
+  max-width: 100% !important;
   display: block;
 }
 
@@ -2155,4 +2176,108 @@ header.navbar,
     border-bottom: 1px solid #e6eeee !important;
     padding: 11px 14px !important;
   }
+}
+
+/* =====================================================
+   FILTRO DE ORDENAMIENTO – Select estilizado
+   ===================================================== */
+.gwj-sort-bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 28px;
+    padding: 14px 20px;
+    background: #ffffff;
+    border: 1px solid #e3eee7;
+    border-left: 5px solid #2f9a8f;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(46, 125, 50, 0.08);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.gwj-sort-bar label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e5631;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+/* Wrapper para el icono dentro del select */
+.gwj-sort-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.gwj-sort-wrapper::before {
+    content: "⇅";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2f9a8f;
+    font-size: 15px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gwj-sort-wrapper::after {
+    content: "▾";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #1e5631;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+.gwj-sort-bar select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 9px 36px 9px 36px;
+    border: 1.5px solid #a3d9a5;
+    border-radius: 8px;
+    background-color: #f4fef7;
+    color: #1e5631;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    min-width: 200px;
+}
+
+.gwj-sort-bar select:hover {
+    border-color: #2f9a8f;
+    background-color: #eafaf0;
+}
+
+.gwj-sort-bar select:focus {
+    border-color: #1e5631;
+    box-shadow: 0 0 0 3px rgba(47, 154, 143, 0.18);
+    background-color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .gwj-sort-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px 14px;
+    }
+
+    .gwj-sort-bar select {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .gwj-sort-wrapper {
+        width: 100%;
+    }
 }

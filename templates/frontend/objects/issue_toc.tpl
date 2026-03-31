@@ -59,6 +59,19 @@
 		</div>
 	{/if}
 
+	{* === FILTRO DE ORDENAMIENTO === *}
+	<div class="gwj-sort-bar">
+    	<label for="gwj-sort-select">{translate key="sortBy"}:</label>
+    	<div class="gwj-sort-wrapper">
+        	<select id="gwj-sort-select">
+            	<option value="default">{translate key="default"}</option>
+           		<option value="alpha">{translate key="alpha"}</option>
+            	<option value="date">{translate key="date"}</option>
+            	<option value="doi">{translate key="doi"}</option>
+        	</select>
+    	</div>
+	</div>
+
 	{* === ARTÍCULOS === *}
 	<div class="gwj-issue-articles">
 		{foreach name=sections from=$publishedSubmissions item=section}
@@ -67,23 +80,28 @@
 					{if $section.title}
 						<h2 class="gwj-section-title">{$section.title|escape}</h2>
 					{/if}
-					
+
 					{* Grid de artículos con soporte para imágenes *}
 					<div class="gwj-article-grid">
-						{foreach from=$section.articles item=article}
+						{foreach name=articles from=$section.articles item=article}
 							{assign var=publication value=$article->getCurrentPublication()}
 							{assign var=articlePath value=$article->getBestId($currentJournal)}
 							{assign var=coverImage value=$publication->getLocalizedData('coverImage')}
-							
+
 							{* Tarjeta individual de artículo *}
-							<div class="gwj-article-card obj_article_summary">
-								
+							<div class="gwj-article-card obj_article_summary"
+								data-title="{$publication->getLocalizedTitle()|strip_tags|trim|escape}"
+								data-date="{$publication->getData('datePublished')|escape|default:''}"
+								data-doi="{$publication->getStoredPubId('doi')|escape|default:''}"
+								data-index="{$smarty.foreach.articles.index}"
+							>
+
 								{* Imagen de portada del artículo *}
 								{if $coverImage}
 									<div class="gwj-article-cover">
 										<a href="{url page="article" op="view" path=$articlePath}">
-											<img 
-												src="{$publication->getLocalizedCoverImageUrl($currentContext->getId())|escape}" 
+											<img
+												src="{$publication->getLocalizedCoverImageUrl($currentContext->getId())|escape}"
 												alt="{$coverImage.altText|escape|default:''}"
 												class="gwj-article-thumb"
 											>
@@ -93,7 +111,7 @@
 
 								{* Contenido del artículo *}
 								<div class="gwj-article-content">
-									
+
 									{* Título *}
 									<h3 class="gwj-article-title">
 										<a href="{url page="article" op="view" path=$articlePath}">

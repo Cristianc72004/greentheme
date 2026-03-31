@@ -105,3 +105,42 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+/* =====================================================
+   ORDENAMIENTO DE ARTÍCULOS – issue_toc
+   ===================================================== */
+document.addEventListener("DOMContentLoaded", function () {
+    var select = document.getElementById("gwj-sort-select");
+    if (!select) return;
+
+    select.addEventListener("change", function () {
+        gwjSortArticles(this.value);
+    });
+});
+
+function gwjSortArticles(criteria) {
+    document.querySelectorAll(".gwj-article-grid").forEach(function (grid) {
+        var cards = Array.from(grid.querySelectorAll(".gwj-article-card"));
+
+        cards.sort(function (a, b) {
+            if (criteria === "alpha") {
+                return (a.dataset.title || "").toLowerCase()
+                    .localeCompare((b.dataset.title || "").toLowerCase());
+
+            } else if (criteria === "date") {
+                return (a.dataset.date || "").localeCompare(b.dataset.date || "");
+
+            } else if (criteria === "doi") {
+                return (a.dataset.doi || "").toLowerCase()
+                    .localeCompare((b.dataset.doi || "").toLowerCase());
+
+            } else {
+                return parseInt(a.dataset.index || 0) - parseInt(b.dataset.index || 0);
+            }
+        });
+
+        cards.forEach(function (card) {
+            grid.appendChild(card);
+        });
+    });
+}
