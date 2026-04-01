@@ -61,14 +61,14 @@
 
 	{* === FILTRO DE ORDENAMIENTO === *}
 	<div class="gwj-sort-bar">
-    	<label for="gwj-sort-select">{translate key="sortBy"}:</label>
+    	<label for="gwj-sort-select">{translate key="plugins.themes.greentheme.sortBy"}:</label>
     	<div class="gwj-sort-wrapper">
         	<select id="gwj-sort-select">
-            	<option value="default">{translate key="default"}</option>
-           		<option value="alpha">{translate key="alpha"}</option>
-            	<option value="date">{translate key="date"}</option>
-            	<option value="doi">{translate key="doi"}</option>
-        	</select>
+            	<option value="default">{translate key="plugins.themes.greentheme.sort.default"}</option>
+            	<option value="alpha">{translate key="plugins.themes.greentheme.sort.alpha"}</option>
+            	<option value="date">{translate key="plugins.themes.greentheme.sort.date"}</option>
+            	<option value="doi">{translate key="plugins.themes.greentheme.sort.doi"}</option>
+       		</select>
     	</div>
 	</div>
 

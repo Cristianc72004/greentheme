@@ -113,3 +113,18 @@ msgstr "Estadisticas de Descargas"
 
 msgid "plugins.themes.greentheme.displayStats.noStats"
 msgstr "Aún no hay datos de descargas disponibles."
+
+msgid "plugins.themes.greentheme.sortBy"
+msgstr "Ordenar por"
+
+msgid "plugins.themes.greentheme.sort.default"
+msgstr "Orden predeterminado"
+
+msgid "plugins.themes.greentheme.sort.alpha"
+msgstr "Alfabético"
+
+msgid "plugins.themes.greentheme.sort.date"
+msgstr "Fecha de publicación"
+
+msgid "plugins.themes.greentheme.sort.doi"
+msgstr "DOI"

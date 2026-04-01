@@ -113,3 +113,18 @@ msgstr "Downloads"
 
 msgid "plugins.themes.greentheme.displayStats.noStats"
 msgstr "Download data is not yet available."
+
+msgid "plugins.themes.greentheme.sortBy"
+msgstr "Sort by"
+
+msgid "plugins.themes.greentheme.sort.default"
+msgstr "Default order"
+
+msgid "plugins.themes.greentheme.sort.alpha"
+msgstr "Alphabetical"
+
+msgid "plugins.themes.greentheme.sort.date"
+msgstr "Publication date"
+
+msgid "plugins.themes.greentheme.sort.doi"
+msgstr "DOI"

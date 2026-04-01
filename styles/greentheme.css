@@ -2281,3 +2281,10 @@ header.navbar,
         width: 100%;
     }
 }
+
+/* =====================================================
+   OCULTAR CANDADO EN BOTONES DE GALLEY
+   ===================================================== */
+.galley-link .glyphicon-lock {
+    display: none !important;
+}
