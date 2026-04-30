@@ -64,11 +64,20 @@
     	<label for="gwj-sort-select">{translate key="plugins.themes.greentheme.sortBy"}:</label>
     	<div class="gwj-sort-wrapper">
         	<select id="gwj-sort-select">
-            	<option value="default">{translate key="plugins.themes.greentheme.sort.default"}</option>
-            	<option value="alpha">{translate key="plugins.themes.greentheme.sort.alpha"}</option>
-            	<option value="date">{translate key="plugins.themes.greentheme.sort.date"}</option>
-            	<option value="doi">{translate key="plugins.themes.greentheme.sort.doi"}</option>
-       		</select>
+            	<option value="default">— {translate key="plugins.themes.greentheme.sort.default"} —</option>
+            	<optgroup label="{translate key="plugins.themes.greentheme.sort.alpha"}">
+                	<option value="alpha-asc">↑ {translate key="plugins.themes.greentheme.sort.alpha"} (A → Z)</option>
+                	<option value="alpha-desc">↓ {translate key="plugins.themes.greentheme.sort.alpha"} (Z → A)</option>
+            	</optgroup>
+            	<optgroup label="{translate key="plugins.themes.greentheme.sort.date"}">
+                	<option value="date-asc">↑ {translate key="plugins.themes.greentheme.sort.date"} ({translate key="plugins.themes.greentheme.sort.oldest"})</option>
+                	<option value="date-desc">↓ {translate key="plugins.themes.greentheme.sort.date"} ({translate key="plugins.themes.greentheme.sort.newest"})</option>
+            	</optgroup>
+            	<optgroup label="{translate key="plugins.themes.greentheme.sort.doi"}">
+                	<option value="doi-asc">↑ {translate key="plugins.themes.greentheme.sort.doi"} ({translate key="plugins.themes.greentheme.sort.oldest"})</option>
+                	<option value="doi-desc">↓ {translate key="plugins.themes.greentheme.sort.doi"} ({translate key="plugins.themes.greentheme.sort.newest"})</option>
+            	</optgroup>
+        	</select>
     	</div>
 	</div>
 

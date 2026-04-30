@@ -113,30 +113,53 @@ document.addEventListener("DOMContentLoaded", function () {
     var select = document.getElementById("gwj-sort-select");
     if (!select) return;
 
+    // Restaurar selección guardada en sessionStorage
+    var savedCriteria = sessionStorage.getItem("gwj-sort-criteria");
+    if (savedCriteria) {
+        select.value = savedCriteria;
+        gwjSortArticles(savedCriteria);
+    }
+
     select.addEventListener("change", function () {
+        sessionStorage.setItem("gwj-sort-criteria", this.value);
         gwjSortArticles(this.value);
     });
 });
 
 function gwjSortArticles(criteria) {
+    // Separar criterio y dirección: "alpha-asc" → criterio="alpha", dir="asc"
+    var parts = criteria.split("-");
+    var field = parts[0];
+    var dir = parts[1] || "asc";
+
     document.querySelectorAll(".gwj-article-grid").forEach(function (grid) {
         var cards = Array.from(grid.querySelectorAll(".gwj-article-card"));
 
         cards.sort(function (a, b) {
-            if (criteria === "alpha") {
-                return (a.dataset.title || "").toLowerCase()
-                    .localeCompare((b.dataset.title || "").toLowerCase());
+            var valA, valB, result;
 
-            } else if (criteria === "date") {
-                return (a.dataset.date || "").localeCompare(b.dataset.date || "");
+            if (field === "alpha") {
+                valA = (a.dataset.title || "").toLowerCase();
+                valB = (b.dataset.title || "").toLowerCase();
+                result = valA.localeCompare(valB);
 
-            } else if (criteria === "doi") {
-                return (a.dataset.doi || "").toLowerCase()
-                    .localeCompare((b.dataset.doi || "").toLowerCase());
+            } else if (field === "date") {
+                valA = a.dataset.date || "";
+                valB = b.dataset.date || "";
+                result = valA.localeCompare(valB);
+
+            } else if (field === "doi") {
+                valA = (a.dataset.doi || "").toLowerCase();
+                valB = (b.dataset.doi || "").toLowerCase();
+                result = valA.localeCompare(valB);
 
             } else {
+                // "default" — orden original por índice, siempre asc
                 return parseInt(a.dataset.index || 0) - parseInt(b.dataset.index || 0);
             }
+
+            // Invertir si es descendente
+            return dir === "desc" ? -result : result;
         });
 
         cards.forEach(function (card) {

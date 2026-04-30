@@ -128,3 +128,9 @@ msgstr "Publication date"
 
 msgid "plugins.themes.greentheme.sort.doi"
 msgstr "DOI"
+
+msgid "plugins.themes.greentheme.sort.oldest"
+msgstr "oldest first"
+
+msgid "plugins.themes.greentheme.sort.newest"
+msgstr "newest first"

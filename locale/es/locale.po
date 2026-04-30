@@ -128,3 +128,9 @@ msgstr "Fecha de publicación"
 
 msgid "plugins.themes.greentheme.sort.doi"
 msgstr "DOI"
+
+msgid "plugins.themes.greentheme.sort.oldest"
+msgstr "más antiguo"
+
+msgid "plugins.themes.greentheme.sort.newest"
+msgstr "más reciente"
